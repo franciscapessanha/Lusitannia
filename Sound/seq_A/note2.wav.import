@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/note2.wav-fb57d7e692c7e9df6e4004c70cb95179.sample"
+
+[deps]
+
+source_file="res://Sound/seq_A/note2.wav"
+dest_files=[ "res://.import/note2.wav-fb57d7e692c7e9df6e4004c70cb95179.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0
