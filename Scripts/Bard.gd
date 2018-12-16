@@ -2,6 +2,8 @@ extends KinematicBody2D
 
 var velocity = Vector2(0,0)
 var exploring = true
+var find_sheet = true
+
 func _ready():
 	get_parent().get_node("select").hide()
 	get_parent().get_node("escape").hide()
@@ -32,7 +34,8 @@ func _process(delta):
 	if exploring:
 		get_input()
 		var collision = move_and_slide(velocity)
-		get_sheet()
+		if find_sheet:
+			get_sheet()
 	else:
 		get_parent().get_node("escape").show()
 		if Input.is_action_just_pressed("ui_select"):
@@ -41,7 +44,10 @@ func _process(delta):
 			get_parent().get_node("escape").hide()
 			
 		
-	
+func set_exploring():
+	exploring = true
+	find_sheet = false
+	get_parent().get_node("escape").hide()
 
 	
 	
