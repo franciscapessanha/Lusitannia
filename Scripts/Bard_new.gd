@@ -22,7 +22,6 @@ func get_sheet():
 		get_parent().get_node("select").show()
 		if Input.is_action_just_pressed("ui_select"):
 			get_parent().get_node("Sheet").play_song()
-			exploring = false
 			get_parent().get_node("select").hide()
 	else:
 		get_parent().get_node("select").hide()
@@ -49,6 +48,4 @@ func set_exploring():
 	get_parent().get_node("escape").hide()
 
 	
-	
-
 	

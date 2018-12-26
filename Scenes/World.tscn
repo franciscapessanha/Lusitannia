@@ -87,7 +87,7 @@ use_filter = false
 font_data = ExtResource( 17 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[node name="World" type="Node2D" index="0"]
+[node name="World" type="Node2D"]
 
 [node name="Arrows" type="Node2D" parent="." index="0"]
 
@@ -145,7 +145,7 @@ collision_layer = 1
 collision_mask = 1
 collision/safe_margin = 0.08
 script = ExtResource( 9 )
-_sections_unfolded = [ "Transform" ]
+_sections_unfolded = [ "Collision", "Transform" ]
 
 [node name="Sprite" type="Sprite" parent="Bard" index="0"]
 
