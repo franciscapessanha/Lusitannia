@@ -1,0 +1,120 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Images/Tavern/Taverna1-01.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/Box.gd" type="Script" id=2]
+[ext_resource path="res://Images/Assets_tavern/caixa.png" type="Texture" id=3]
+[ext_resource path="res://Scenes/Bard.tscn" type="PackedScene" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 1756.12, 10 )
+
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 103.805, 103.645 )
+
+[node name="World" type="Node2D"]
+
+[node name="scene_one" type="StaticBody2D" parent="." index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="tavern_one" type="Sprite" parent="scene_one" index="0"]
+
+position = Vector2( 1066.67, 300.008 )
+scale = Vector2( 0.533329, 0.533329 )
+texture = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="barrils_one" type="CollisionPolygon2D" parent="scene_one" index="1"]
+
+position = Vector2( 939.855, 581.362 )
+scale = Vector2( 0.537145, 1.22878 )
+build_mode = 0
+polygon = PoolVector2Array( -1213.74, -12.4272, -1194.89, -12.4272, -1194.89, -5.10394, -1029.46, -5.10394, -1029.46, -12.4272, -987.579, -12.4272, -985.485, -4.18857, -843.087, -4.18857, -840.993, -11.5117, -822.146, -12.4272, -822.146, -76.5048, -836.805, -76.5048, -838.899, -83.828, -979.202, -83.828, -983.39, -77.4202, -1004.33, -76.5048, -1006.43, -93.8973, -1027.37, -94.8127, -1027.37, -102.136, -1194.89, -102.136, -1194.89, -95.7281, -1213.74, -95.7281 )
+
+[node name="barril_two" type="CollisionPolygon2D" parent="scene_one" index="2"]
+
+build_mode = 0
+polygon = PoolVector2Array( 709.452, 568.581, 709.701, 468.581, 719.698, 468.581, 719.698, 456.363, 809.708, 456.377, 809.708, 466.7, 821.322, 466.7, 823.042, 566.487, 810.569, 566.487, 808.556, 576.321, 718.587, 576.321, 718.587, 568.546 )
+
+[node name="floor_collision" type="CollisionShape2D" parent="scene_one" index="3"]
+
+visible = false
+position = Vector2( 932.518, 589.103 )
+scale = Vector2( 0.530412, 1.21338 )
+shape = SubResource( 1 )
+
+[node name="Box" type="KinematicBody2D" parent="scene_one" index="4"]
+
+position = Vector2( 1351.6, 508.2 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 2 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Sprite" type="Sprite" parent="scene_one/Box" index="0"]
+
+scale = Vector2( 0.670402, 0.670402 )
+texture = ExtResource( 3 )
+_sections_unfolded = [ "Transform" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="scene_one/Box" index="1"]
+
+scale = Vector2( 0.670402, 0.670402 )
+shape = SubResource( 2 )
+_sections_unfolded = [ "Transform" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Bard" parent="." index="1" instance=ExtResource( 4 )]
+
+position = Vector2( 196.816, 466.464 )
+scale = Vector2( 0.11923, 0.11923 )
+
+[node name="Camera2D" type="Camera2D" parent="Bard" index="7"]
+
+position = Vector2( 512.269, 302.223 )
+scale = Vector2( 0.582236, 0.587582 )
+anchor_mode = 1
+rotating = false
+current = true
+zoom = Vector2( 1, 1 )
+limit_left = -10000
+limit_top = 0
+limit_right = 100000
+limit_bottom = 600
+limit_smoothed = false
+drag_margin_h_enabled = false
+drag_margin_v_enabled = false
+smoothing_enabled = true
+smoothing_speed = 5.0
+offset_v = 0.0
+offset_h = 0.0
+drag_margin_left = 0.3
+drag_margin_top = 1.0
+drag_margin_right = 0.7
+drag_margin_bottom = 1.0
+editor_draw_screen = true
+editor_draw_limits = true
+editor_draw_drag_margin = true
+_sections_unfolded = [ "Drag Margin", "Editor", "Limit", "Smoothing", "Transform" ]
+
+

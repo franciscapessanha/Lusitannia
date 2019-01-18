@@ -1,0 +1,143 @@
+[gd_scene load_steps=27 format=2]
+
+[ext_resource path="res://Scripts/Bard.gd" type="Script" id=1]
+[ext_resource path="res://Images/Aedo/Playing/playing-01.png" type="Texture" id=2]
+[ext_resource path="res://Images/Aedo/Playing/playing-02.png" type="Texture" id=3]
+[ext_resource path="res://Images/Aedo/Playing/playing-03.png" type="Texture" id=4]
+[ext_resource path="res://Images/Aedo/Idle/idle-01.png" type="Texture" id=5]
+[ext_resource path="res://Images/Aedo/Idle/idle-02.png" type="Texture" id=6]
+[ext_resource path="res://Images/Aedo/Idle/idle-03.png" type="Texture" id=7]
+[ext_resource path="res://Images/Aedo/Crawl/crawl-01.png" type="Texture" id=8]
+[ext_resource path="res://Images/Aedo/Crawl/crawl-02.png" type="Texture" id=9]
+[ext_resource path="res://Images/Aedo/Jump/jump-01.png" type="Texture" id=10]
+[ext_resource path="res://Images/Aedo/Jump/jump-02.png" type="Texture" id=11]
+[ext_resource path="res://Images/Aedo/Jump/jump-03.png" type="Texture" id=12]
+[ext_resource path="res://Images/Aedo/Pull/pull-01.png" type="Texture" id=13]
+[ext_resource path="res://Images/Aedo/Pull/pull-02.png" type="Texture" id=14]
+[ext_resource path="res://Images/Aedo/Pull/pull-03.png" type="Texture" id=15]
+[ext_resource path="res://Images/Aedo/Push/push-01.png" type="Texture" id=16]
+[ext_resource path="res://Images/Aedo/Push/push-02.png" type="Texture" id=17]
+[ext_resource path="res://Images/Aedo/Push/push-03.png" type="Texture" id=18]
+[ext_resource path="res://Images/Aedo/Run/run-01.png" type="Texture" id=19]
+[ext_resource path="res://Images/Aedo/Run/run-02.png" type="Texture" id=20]
+[ext_resource path="res://Images/Aedo/Run/run-03.png" type="Texture" id=21]
+[ext_resource path="res://Images/Aedo/Die/die-01.png" type="Texture" id=22]
+[ext_resource path="res://Images/Aedo/Die/die-02.png" type="Texture" id=23]
+[ext_resource path="res://Images/Aedo/Die/die-03.png" type="Texture" id=24]
+[ext_resource path="res://Images/Aedo/Die/die-04.png" type="Texture" id=25]
+
+[sub_resource type="SpriteFrames" id=1]
+
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "playing",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 8 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "crawl",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 11 ) ],
+"loop": false,
+"name": "jump",
+"speed": 8.0
+}, {
+"frames": [ ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ) ],
+"loop": true,
+"name": "pull",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ) ],
+"loop": true,
+"name": "push",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ) ],
+"loop": true,
+"name": "run",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 22 ), ExtResource( 23 ), ExtResource( 24 ), ExtResource( 25 ) ],
+"loop": true,
+"name": "die",
+"speed": 5.0
+} ]
+_sections_unfolded = [ "Resource" ]
+
+[node name="Bard" type="KinematicBody2D" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="animations" type="AnimatedSprite" parent="." index="0"]
+
+frames = SubResource( 1 )
+animation = "idle"
+frame = 2
+_sections_unfolded = [ "Transform" ]
+
+[node name="crawl_collision" type="CollisionPolygon2D" parent="." index="1"]
+
+visible = false
+build_mode = 0
+polygon = PoolVector2Array( 142.444, -61.6537, 247.127, -119.229, 456.493, -119.229, 544.103, -80.2442, 634.195, 3.09067, 764.828, 133.724, 839.154, 262.104, 841.406, 340.935, 638.699, 340.935, 638.699, 552.65, 595.906, 588.687, 429.236, 584.182, 429.236, 692.292, 472.03, 714.815, 717.53, 750.852, 719.782, 829.682, 720.195, 833.613, 417.975, 836.439, -823.039, 836.439, -823.039, 665.265, -782.497, 586.434, -690.153, 505.352, -527.988, 417.513, 5.80518, 417.513, 84.6354, 381.476, -34.7361, 255.347, -34.7361, 124.715 )
+
+[node name="idle_collision" type="CollisionPolygon2D" parent="." index="2"]
+
+visible = false
+build_mode = 0
+polygon = PoolVector2Array( -539.665, -419.293, -539.665, -541.836, -413.293, -668.208, -202.672, -786.922, -87.7886, -786.922, -3.54041, -752.457, 126.661, -629.914, 536.414, -212.502, 540.243, -128.254, 421.53, -128.254, 253.034, -120.595, 253.034, 193.421, 375.576, 204.909, 421.53, 254.692, 471.313, 338.94, 463.654, 503.607, 413.871, 534.243, 333.452, 538.072, 287.499, 580.196, 222.398, 584.026, 222.398, 744.863, 256.863, 744.863, 256.863, 786.987, 337.282, 786.987, 337.384, 835.417, 338.314, 835.417, 83.7189, 835.842, -500.682, 834.4, -500.862, 749.472, -584.709, 708.901, -696.363, 710.514, -708.74, 585.17, -628.52, 540.046, -628.52, 259.276, -563.199, 199.111, -442.868, 174.042, -372.676, 98.8354, -377.942, -154.492, -423.066, -159.506, -428.08, -289.864 )
+
+[node name="play_collision" type="CollisionPolygon2D" parent="." index="3"]
+
+visible = false
+build_mode = 0
+polygon = PoolVector2Array( -539.665, -419.293, -539.665, -541.836, -413.293, -668.208, -202.672, -786.922, -87.7886, -786.922, -3.54041, -752.457, 126.661, -629.914, 536.414, -212.502, 540.243, -128.254, 421.53, -128.254, 253.034, -120.595, 254.291, 82.7701, 338.067, 1.53308, 419.304, -44.1627, 541.16, -44.1627, 543.698, 123.389, 454.845, 133.543, 333.452, 538.072, 287.499, 580.196, 222.398, 584.026, 222.398, 744.863, 256.863, 744.863, 256.863, 786.987, 337.282, 786.987, 337.384, 835.417, 338.314, 835.417, 83.7189, 835.842, -500.682, 834.4, -500.862, 749.472, -584.709, 708.901, -696.363, 710.514, -708.74, 585.17, -628.52, 540.046, -628.52, 259.276, -563.199, 199.111, -442.868, 174.042, -372.676, 98.8354, -377.942, -154.492, -423.066, -159.506, -428.08, -289.864 )
+
+[node name="jump_collision" type="CollisionPolygon2D" parent="." index="4"]
+
+visible = false
+build_mode = 0
+polygon = PoolVector2Array( -457.79, 836.527, 332.789, 835.934, 416.317, 788.009, 409.268, 706.952, 415.821, 665.422, 415.821, 502.325, 291.273, 374.812, 300.018, 322.813, 381.075, 167.748, 465.656, 86.691, 469.18, -78.947, 500.898, -473.659, 134.38, -702.733, -101.743, -829.604, -292.05, -801.41, -443.591, -695.684, -538.745, -621.676, -538.745, -494.804, -577.511, -47.2291, -584.56, 83.1667, -496.454, 164.224, -468.261, 220.611, -499.978, 382.725, -707.907, 425.015, -704.383, 576.557, -626.522, 630.43, -663.59, 627.465, -666.555, 793.528, -540.525, 793.528, -461.941, 792.045 )
+
+[node name="pull_collision" type="CollisionPolygon2D" parent="." index="5"]
+
+visible = false
+build_mode = 0
+polygon = PoolVector2Array( -546.27, 643.73, -367.72, 504.858, -240.751, 246.953, -304.236, 36.6616, -335.978, -173.63, -407.398, -332.341, -462.946, -419.632, -462.946, -594.214, -407.398, -669.601, -197.106, -796.57, -82.0406, -796.57, 1.28247, -748.957, 255.22, -495.019, 493.286, -252.986, 497.254, -165.695, 290.93, -165.695, 290.93, -126.017, 259.188, -98.2426, 255.22, 143.791, 497.254, 163.63, 500.801, 164.046, 500.801, 417.756, 458.913, 458.793, 291.702, 583.264, 251.858, 750.304, 292.724, 750.304, 292.724, 791.17, 333.59, 791.17, 333.696, 833.911, -207.741, 833.391, -207.205, 710.119, -415.792, 710.971, -415.792, 789.297, -541.626, 790.83 )
+
+[node name="push_collision" type="CollisionPolygon2D" parent="." index="6"]
+
+visible = false
+build_mode = 0
+polygon = PoolVector2Array( -498.819, 634.233, -366.683, 286.169, -289.336, 79.9086, -331.232, 41.2347, -415.025, -248.819, -505.264, -435.742, -502.041, -558.209, -408.58, -674.23, -208.765, -787.029, -86.2982, -790.252, 36.1687, -719.35, 329.445, -413.182, 487.363, -258.487, 497.031, -174.694, 293.994, -165.025, 255.32, 83.1313, 210.201, 160.479, 500.254, 163.702, 500.495, 416.796, 458.881, 459.845, 290.992, 459.845, 292.14, 580.954, 207.478, 624.003, 207.478, 750.279, 250.527, 753.149, 253.396, 791.892, 292.14, 793.327, 292.14, 833.506, -207.223, 833.506, -251.706, 794.762, -377.982, 793.327, -497.657, 794.188 )
+
+[node name="run_collision" type="CollisionPolygon2D" parent="." index="7"]
+
+visible = false
+build_mode = 0
+polygon = PoolVector2Array( -499.232, 834.04, -584.666, 583.087, -589.344, 419.368, -336.748, 372.591, -374.17, 35.7969, -416.269, -160.666, -505.145, -385.196, -505.145, -497.461, -411.591, -665.858, -201.095, -787.478, -84.1527, -782.8, 163.765, -581.659, 327.485, -422.617, 444.427, -258.898, 453.782, -179.377, 247.964, -85.8232, 247.964, 73.2185, 207.049, 292.674, 250.225, 335.85, 250.225, 541.983, 289.223, 541.983, 417.36, 626.943, 584.494, 752.294, 584.494, 792.684, 375.576, 792.684, -458.372, 834.04 )
+
+[node name="jump_timer" type="Timer" parent="." index="8"]
+
+process_mode = 1
+wait_time = 0.13
+one_shot = true
+autostart = false
+
+[connection signal="animation_finished" from="animations" to="." method="_on_animations_animation_finished"]
+
+[connection signal="timeout" from="jump_timer" to="." method="_on_jump_timer_timeout"]
+
+
