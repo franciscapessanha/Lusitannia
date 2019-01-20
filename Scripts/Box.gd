@@ -1,11 +1,9 @@
 extends KinematicBody2D
 
 onready var velocity = Vector2()
-func _ready():
-	# Called when the node is added to the scene for the first time.
-	# Initialization here
-	pass
+onready var direction = Vector2()
 
-
-func move(velocity):
-	velocity = move_and_slide(velocity, Vector2(0,-1))
+func move(velocity, delta, bard_position):
+	direction.x = (bard_position.x - global_position.x)
+	direction.y = 0
+	move_and_slide(-direction.normalized() * velocity*2)

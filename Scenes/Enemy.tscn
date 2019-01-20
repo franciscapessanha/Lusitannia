@@ -1,0 +1,53 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Scenes/Enemy.gd" type="Script" id=1]
+[ext_resource path="res://Images/Enemy/Walk/bandit_melee_walk-01.png" type="Texture" id=2]
+[ext_resource path="res://Images/Enemy/Walk/bandit_melee_walk-02.png" type="Texture" id=3]
+[ext_resource path="res://Images/Enemy/Walk/bandit_melee_walk-03.png" type="Texture" id=4]
+[ext_resource path="res://Images/Enemy/Attack/bandit_melee_attack-01.png" type="Texture" id=5]
+[ext_resource path="res://Images/Enemy/Attack/bandit_melee_attack-02.png" type="Texture" id=6]
+[ext_resource path="res://Images/Enemy/Attack/bandit_melee_attack-03.png" type="Texture" id=7]
+
+[sub_resource type="SpriteFrames" id=1]
+
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "walk",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 6 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "attack",
+"speed": 4.0
+} ]
+
+[node name="Enemy" type="KinematicBody2D"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.001
+script = ExtResource( 1 )
+_sections_unfolded = [ "collision" ]
+
+[node name="animations" type="AnimatedSprite" parent="." index="0"]
+
+frames = SubResource( 1 )
+animation = "attack"
+
+[node name="walk_collision" type="CollisionPolygon2D" parent="." index="1"]
+
+visible = false
+build_mode = 0
+polygon = PoolVector2Array( -555.419, 444.995, -555.419, 296.243, -518.231, 235.812, -429.91, 161.437, -383.425, 73.1149, -481.043, 45.2239, -522.88, -10.5581, -518.231, -80.2856, -434.558, -289.468, -388.073, -368.493, -346.237, -419.626, -267.212, -452.166, -183.539, -498.651, -25.4899, -498.651, 104.668, -461.463, 225.529, -335.953, 304.554, -252.28, 392.875, -89.5826, 434.712, 17.3329, 434.712, 87.0604, 364.984, 207.922, 364.984, 286.946, 425.415, 286.946, 476.548, 207.922, 527.682, 207.922, 527.682, 254.406, 481.197, 291.595, 732.216, 291.595, 732.216, 338.08, 481.197, 338.08, 481.197, 370.619, 518.385, 375.268, 518.385, 407.807, 434.712, 375.268, 383.578, 431.05, 360.336, 486.832, 355.687, 589.099, 276.663, 626.287, 318.499, 635.584, 318.499, 765.742, 388.227, 793.633, 388.227, 835.469, -267.212, 835.469, -313.697, 784.336, -310.843, 622.446, -431.704, 571.313 )
+
+[node name="attack_collision" type="CollisionPolygon2D" parent="." index="2"]
+
+visible = false
+build_mode = 0
+polygon = PoolVector2Array( -539.162, 837.18, 417.346, 837.18, 417.346, 789.605, 297.156, 669.415, 334.716, 669.415, 334.716, 584.281, 292.149, 584.281, 294.652, 328.879, 372.275, 419.021, 670.244, 419.021, 670.244, 338.894, 833.001, 338.894, 833.001, 288.815, 680.26, 288.815, 675.252, 206.185, 625.173, 206.185, 625.173, 243.744, 582.606, 243.744, 582.606, 296.327, 337.22, 296.327, 337.22, 203.681, 294.652, 203.681, 294.652, 163.618, 209.518, 163.618, 209.518, 83.4918, 254.589, 85.9957, 254.589, -39.2016, 327.204, -39.2016, 334.716, -79.2647, 247.078, -247.029, 41.7539, -464.872, -78.4355, -499.928, -251.208, -499.928, -416.468, -414.794, -496.595, -289.596, -536.658, -164.399, -539.162, -41.7055, -376.405, 78.4839, -496.595, 168.626, -539.162, 211.193, -704.422, 211.193, -704.422, 288.815, -666.863, 288.815, -666.863, 331.382, -546.674, 331.382, -459.035, 253.76, -459.035, 371.446, -496.595, 378.958, -496.595, 584.281, -461.539, 586.785, -464.043, 619.336, -496.595, 631.856, -539.162, 674.423 )
+
+[connection signal="animation_finished" from="animations" to="." method="_on_animations_animation_finished"]
+
+

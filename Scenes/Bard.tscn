@@ -1,12 +1,12 @@
 [gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Scripts/Bard.gd" type="Script" id=1]
-[ext_resource path="res://Images/Aedo/Playing/playing-01.png" type="Texture" id=2]
-[ext_resource path="res://Images/Aedo/Playing/playing-02.png" type="Texture" id=3]
-[ext_resource path="res://Images/Aedo/Playing/playing-03.png" type="Texture" id=4]
-[ext_resource path="res://Images/Aedo/Idle/idle-01.png" type="Texture" id=5]
-[ext_resource path="res://Images/Aedo/Idle/idle-02.png" type="Texture" id=6]
-[ext_resource path="res://Images/Aedo/Idle/idle-03.png" type="Texture" id=7]
+[ext_resource path="res://Images/Aedo/Idle/idle-01.png" type="Texture" id=2]
+[ext_resource path="res://Images/Aedo/Idle/idle-02.png" type="Texture" id=3]
+[ext_resource path="res://Images/Aedo/Idle/idle-03.png" type="Texture" id=4]
+[ext_resource path="res://Images/Aedo/Playing/playing-01.png" type="Texture" id=5]
+[ext_resource path="res://Images/Aedo/Playing/playing-02.png" type="Texture" id=6]
+[ext_resource path="res://Images/Aedo/Playing/playing-03.png" type="Texture" id=7]
 [ext_resource path="res://Images/Aedo/Crawl/crawl-01.png" type="Texture" id=8]
 [ext_resource path="res://Images/Aedo/Crawl/crawl-02.png" type="Texture" id=9]
 [ext_resource path="res://Images/Aedo/Jump/jump-01.png" type="Texture" id=10]
@@ -31,12 +31,12 @@
 animations = [ {
 "frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ) ],
 "loop": true,
-"name": "playing",
+"name": "idle",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
 "loop": true,
-"name": "idle",
+"name": "play",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 8 ), ExtResource( 9 ) ],
@@ -71,20 +71,19 @@ animations = [ {
 } ]
 _sections_unfolded = [ "Resource" ]
 
-[node name="Bard" type="KinematicBody2D" index="0"]
+[node name="Bard" type="KinematicBody2D"]
 
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
-collision/safe_margin = 0.08
+collision/safe_margin = 0.001
 script = ExtResource( 1 )
-_sections_unfolded = [ "Transform" ]
+_sections_unfolded = [ "Pickable", "Transform", "collision" ]
 
 [node name="animations" type="AnimatedSprite" parent="." index="0"]
 
 frames = SubResource( 1 )
 animation = "idle"
-frame = 2
 _sections_unfolded = [ "Transform" ]
 
 [node name="crawl_collision" type="CollisionPolygon2D" parent="." index="1"]
@@ -96,8 +95,10 @@ polygon = PoolVector2Array( 142.444, -61.6537, 247.127, -119.229, 456.493, -119.
 [node name="idle_collision" type="CollisionPolygon2D" parent="." index="2"]
 
 visible = false
+position = Vector2( 1, 1 )
 build_mode = 0
-polygon = PoolVector2Array( -539.665, -419.293, -539.665, -541.836, -413.293, -668.208, -202.672, -786.922, -87.7886, -786.922, -3.54041, -752.457, 126.661, -629.914, 536.414, -212.502, 540.243, -128.254, 421.53, -128.254, 253.034, -120.595, 253.034, 193.421, 375.576, 204.909, 421.53, 254.692, 471.313, 338.94, 463.654, 503.607, 413.871, 534.243, 333.452, 538.072, 287.499, 580.196, 222.398, 584.026, 222.398, 744.863, 256.863, 744.863, 256.863, 786.987, 337.282, 786.987, 337.384, 835.417, 338.314, 835.417, 83.7189, 835.842, -500.682, 834.4, -500.862, 749.472, -584.709, 708.901, -696.363, 710.514, -708.74, 585.17, -628.52, 540.046, -628.52, 259.276, -563.199, 199.111, -442.868, 174.042, -372.676, 98.8354, -377.942, -154.492, -423.066, -159.506, -428.08, -289.864 )
+polygon = PoolVector2Array( -539.665, -419.293, -539.665, -541.836, -413.293, -668.208, -202.672, -786.922, -87.7886, -786.922, -3.54041, -752.457, 126.661, -629.914, 234.102, -434.572, 293.212, -187.43, 291.345, -123.946, 250.649, -125.424, 250.276, 206.648, 375.196, 206.648, 415.589, 249.285, 457.628, 334.859, 457.628, 497.927, 415.758, 542.183, 332.796, 542.183, 290.224, 582.243, 207.724, 582.441, 207.526, 749.887, 249.172, 749.887, 249.106, 791.599, 332.068, 791.599, 332.068, 832.254, -501.08, 832.914, -501.048, 749.396, -584.709, 708.901, -625.183, 541.861, -624.949, 332.967, -583.518, 249.094, -539.661, 209.886, -372.676, 98.8354, -375.35, -168.05, -417.95, -165.916, -417.95, -289.706 )
+_sections_unfolded = [ "Transform" ]
 
 [node name="play_collision" type="CollisionPolygon2D" parent="." index="3"]
 
@@ -110,6 +111,7 @@ polygon = PoolVector2Array( -539.665, -419.293, -539.665, -541.836, -413.293, -6
 visible = false
 build_mode = 0
 polygon = PoolVector2Array( -457.79, 836.527, 332.789, 835.934, 416.317, 788.009, 409.268, 706.952, 415.821, 665.422, 415.821, 502.325, 291.273, 374.812, 300.018, 322.813, 381.075, 167.748, 465.656, 86.691, 469.18, -78.947, 500.898, -473.659, 134.38, -702.733, -101.743, -829.604, -292.05, -801.41, -443.591, -695.684, -538.745, -621.676, -538.745, -494.804, -577.511, -47.2291, -584.56, 83.1667, -496.454, 164.224, -468.261, 220.611, -499.978, 382.725, -707.907, 425.015, -704.383, 576.557, -626.522, 630.43, -663.59, 627.465, -666.555, 793.528, -540.525, 793.528, -461.941, 792.045 )
+_sections_unfolded = [ "Transform" ]
 
 [node name="pull_collision" type="CollisionPolygon2D" parent="." index="5"]
 
@@ -136,8 +138,17 @@ wait_time = 0.13
 one_shot = true
 autostart = false
 
+[node name="jump_stairs_timer" type="Timer" parent="." index="9"]
+
+process_mode = 1
+wait_time = 0.6
+one_shot = true
+autostart = false
+
 [connection signal="animation_finished" from="animations" to="." method="_on_animations_animation_finished"]
 
 [connection signal="timeout" from="jump_timer" to="." method="_on_jump_timer_timeout"]
+
+[connection signal="timeout" from="jump_stairs_timer" to="." method="_on_jump_stairs_timer_timeout"]
 
 

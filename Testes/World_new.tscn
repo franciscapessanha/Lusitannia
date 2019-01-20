@@ -1,13 +1,8 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://Scripts/Bard_new.gd" type="Script" id=1]
-[ext_resource path="res://Images/bard.png" type="Texture" id=2]
-[ext_resource path="res://Images/yellow_rect.jpg" type="Texture" id=3]
-[ext_resource path="res://Images/white_rect.jpg" type="Texture" id=4]
-[ext_resource path="res://Scripts/Sheet_new.gd" type="Script" id=5]
-[ext_resource path="res://Sound/seq_A/note1.wav" type="AudioStream" id=6]
-[ext_resource path="res://Images/pauta.png" type="Texture" id=7]
-[ext_resource path="res://Fonts/Enter the Grid.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://Sound/seq_A/note1.wav" type="AudioStream" id=1]
+[ext_resource path="res://Images/pauta.png" type="Texture" id=2]
+[ext_resource path="res://Fonts/Enter the Grid.ttf" type="DynamicFontData" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -17,12 +12,12 @@ extents = Vector2( 12.1011, 1.29916 )
 [sub_resource type="SpriteFrames" id=2]
 
 animations = [ {
-"frames": [ ExtResource( 3 ) ],
+"frames": [ null ],
 "loop": true,
 "name": "on",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 4 ) ],
+"frames": [ null ],
 "loop": true,
 "name": "off",
 "speed": 5.0
@@ -45,7 +40,7 @@ _data = {
 size = 20
 use_mipmaps = false
 use_filter = false
-font_data = ExtResource( 8 )
+font_data = ExtResource( 3 )
 _sections_unfolded = [ "Font", "Settings" ]
 
 [node name="World" type="Node2D"]
@@ -57,13 +52,11 @@ input_pickable = false
 collision_layer = 1
 collision_mask = 1
 collision/safe_margin = 0.08
-script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Sprite" type="Sprite" parent="Bard" index="0"]
 
 scale = Vector2( 0.533577, 0.533577 )
-texture = ExtResource( 2 )
 _sections_unfolded = [ "Transform", "Z Index" ]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Bard" index="1"]
@@ -234,13 +227,12 @@ constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
 friction = 1.0
 bounce = 0.0
-script = ExtResource( 5 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="note" type="AudioStreamPlayer2D" parent="Sheet" index="0"]
 
 position = Vector2( -512.995, -482.85 )
-stream = ExtResource( 6 )
+stream = ExtResource( 1 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
@@ -252,7 +244,7 @@ area_mask = 1
 [node name="Sprite" type="Sprite" parent="Sheet" index="1"]
 
 scale = Vector2( 0.307476, 0.307476 )
-texture = ExtResource( 7 )
+texture = ExtResource( 2 )
 _sections_unfolded = [ "Transform" ]
 __meta__ = {
 "_edit_lock_": true

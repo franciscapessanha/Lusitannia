@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Scripts/Barman.gd" type="Script" id=1]
+[ext_resource path="res://Images/Barman/Angry/barman_angry-01.png" type="Texture" id=2]
+[ext_resource path="res://Images/Barman/Angry/barman_angry-02.png" type="Texture" id=3]
+[ext_resource path="res://Images/Barman/Happy/barman-03.png" type="Texture" id=4]
+[ext_resource path="res://Images/Barman/Happy/barman-04.png" type="Texture" id=5]
+
+[sub_resource type="SpriteFrames" id=1]
+
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "angry",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "happy",
+"speed": 5.0
+} ]
+
+[node name="Barman" type="KinematicBody2D"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.001
+script = ExtResource( 1 )
+_sections_unfolded = [ "collision" ]
+
+[node name="animations" type="AnimatedSprite" parent="." index="0"]
+
+frames = SubResource( 1 )
+animation = "angry"
+
+[node name="collision" type="CollisionPolygon2D" parent="." index="1"]
+
+visible = false
+build_mode = 0
+polygon = PoolVector2Array( -667.883, 832.677, -581.01, 457.078, -414.929, 252.671, -414.929, 76.3699, -417.484, -56.4948, -328.056, -294.118, 290.276, -291.563, 339.486, -81.5723, 331.629, 20.5706, 308.058, 130.57, 452.745, 279.856, 496.629, 405.57, 543.23, 457.078, 627.548, 756.024, 627.548, 837.787 )
+
+

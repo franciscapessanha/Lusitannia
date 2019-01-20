@@ -1,0 +1,235 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Sound/seq_A/note3.wav" type="AudioStream" id=1]
+[ext_resource path="res://Images/Assets_tavern/degrau_enable.png" type="Texture" id=2]
+[ext_resource path="res://Images/Assets_tavern/degrau_disable.png" type="Texture" id=3]
+[ext_resource path="res://Scenes/sheet_0.gd" type="Script" id=4]
+[ext_resource path="res://Images/pauta.png" type="Texture" id=5]
+
+[sub_resource type="SpriteFrames" id=1]
+
+animations = [ {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "on",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "off",
+"speed": 5.0
+} ]
+
+[node name="stairs" type="Node"]
+
+[node name="sound" type="AudioStreamPlayer" parent="." index="0"]
+
+stream = ExtResource( 1 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="stair_0" type="StaticBody2D" parent="." index="1"]
+
+position = Vector2( 1809.58, 909.744 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="sprite" type="AnimatedSprite" parent="stair_0" index="0"]
+
+scale = Vector2( 0.535166, 0.535166 )
+frames = SubResource( 1 )
+animation = "off"
+_sections_unfolded = [ "Transform" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="collision" type="CollisionPolygon2D" parent="stair_0" index="1"]
+
+visible = false
+build_mode = 0
+polygon = PoolVector2Array( -32.9622, 12.0261, 33.8388, 12.0261, 33.8388, 0.137802, 45.161, 0.137802, 45.0888, -11.1878, -44.472, -11.0483, -44.193, 0.530405, -32.8933, 0.530405 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="stair_1" type="StaticBody2D" parent="." index="2"]
+
+position = Vector2( 1731.81, 988.137 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="sprite" type="AnimatedSprite" parent="stair_1" index="0"]
+
+scale = Vector2( 0.535166, 0.535166 )
+frames = SubResource( 1 )
+animation = "off"
+_sections_unfolded = [ "Transform" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="collision" type="CollisionPolygon2D" parent="stair_1" index="1"]
+
+visible = false
+build_mode = 0
+polygon = PoolVector2Array( -32.9622, 12.0261, 33.8388, 12.0261, 33.8388, 0.137802, 45.161, 0.137802, 45.0888, -11.1878, -44.472, -11.0483, -44.193, 0.530405, -32.8933, 0.530405 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="stair_2" type="StaticBody2D" parent="." index="3"]
+
+position = Vector2( 1643.42, 1076.63 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="sprite" type="AnimatedSprite" parent="stair_2" index="0"]
+
+scale = Vector2( 0.535166, 0.535166 )
+frames = SubResource( 1 )
+animation = "off"
+_sections_unfolded = [ "Transform" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="collision" type="CollisionPolygon2D" parent="stair_2" index="1"]
+
+visible = false
+build_mode = 0
+polygon = PoolVector2Array( -32.9622, 12.0261, 33.8388, 12.0261, 33.8388, 0.137802, 45.161, 0.137802, 45.0888, -11.1878, -44.472, -11.0483, -44.193, 0.530405, -32.8933, 0.530405 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="stair_3" type="StaticBody2D" parent="." index="4"]
+
+position = Vector2( 1565.68, 1155.05 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="sprite" type="AnimatedSprite" parent="stair_3" index="0"]
+
+scale = Vector2( 0.535166, 0.535166 )
+frames = SubResource( 1 )
+animation = "off"
+_sections_unfolded = [ "Transform" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="collision" type="CollisionPolygon2D" parent="stair_3" index="1"]
+
+visible = false
+build_mode = 0
+polygon = PoolVector2Array( -32.9622, 12.0261, 33.8388, 12.0261, 33.8388, 0.137802, 45.161, 0.137802, 45.0888, -11.1878, -44.472, -11.0483, -44.193, 0.530405, -32.8933, 0.530405 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Sheet_0" type="StaticBody2D" parent="." index="5"]
+
+editor/display_folded = true
+position = Vector2( 1899.6, 845.716 )
+scale = Vector2( 0.333448, 0.333448 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="sprite" type="Sprite" parent="Sheet_0" index="0"]
+
+texture = ExtResource( 5 )
+_sections_unfolded = [ "Transform" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="collision" type="CollisionPolygon2D" parent="Sheet_0" index="1"]
+
+build_mode = 0
+polygon = PoolVector2Array( -54.5889, 41.9768, -54.5889, -69.4426, -45.7144, -69.4426, -45.2217, -80.2886, 54.8589, -80.7817, 55.8447, -70.9214, 64.2256, -71.4143, 65.7046, -62.0474, 74.5791, -61.0613, 75.0718, -40.355, 66.1978, -39.8621, 65.7046, -30.002, 54.3657, -29.509, 54.3657, 71.0642, 45.4912, 71.0642, 44.9985, 80.9243, -65.4346, 80.4314, -65.4346, 71.0642, -75.7881, 70.5713, -75.2949, 49.3718, -64.4487, 49.865, -64.9419, 40.9907 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="rythm_timer" type="Timer" parent="." index="6"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = false
+
+[node name="initial_position" type="Position2D" parent="." index="7"]
+
+position = Vector2( 1870.18, 855.711 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="step_0" type="Position2D" parent="." index="8"]
+
+position = Vector2( 1755.44, 870.264 )
+
+[node name="step_1" type="Position2D" parent="." index="9"]
+
+position = Vector2( 1681.9, 949.861 )
+
+[node name="step_2" type="Position2D" parent="." index="10"]
+
+position = Vector2( 1592.2, 1031.37 )
+
+[node name="step_3" type="Position2D" parent="." index="11"]
+
+position = Vector2( 1517.12, 1118.44 )
+
+[node name="step_4" type="Position2D" parent="." index="12"]
+
+position = Vector2( 1407.96, 1161.54 )
+
+[connection signal="finished" from="sound" to="Sheet_0" method="_on_sound_finished"]
+
+[connection signal="timeout" from="rythm_timer" to="Sheet_0" method="_on_rythm_timer_timeout"]
+
+
