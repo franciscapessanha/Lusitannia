@@ -10,6 +10,7 @@ var ground_truth = "ASDJKL"
 func collect_melody():
 	collision.disabled = true
 	sprite.hide()
+	print(get_node("initial_position").global_position)
 	return get_node("initial_position").global_position
 
 func generate_next_mug():

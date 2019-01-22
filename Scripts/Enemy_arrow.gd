@@ -12,8 +12,6 @@ Ready function
 ================================= 
 """
 func _ready():
-	animations.play("attack")
-	shoot()
 	set_process(true)
 
 """
@@ -43,3 +41,6 @@ func _on_shooter_timer_timeout():
 	animations.play("attack")
 	shoot()
 
+func start_shooting():
+	animations.play("attack")
+	shoot()

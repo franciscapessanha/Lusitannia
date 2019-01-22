@@ -14,7 +14,6 @@ onready var note_3  = get_parent().get_node("note_3")
 
 onready var notes = [note_0, note_1, note_2, note_3]
 onready var stairs = [stair_0, stair_1, stair_2, stair_3]
-onready var sounds = get_parent().get_node("sound")
 onready var times = [0.693, 0.731, 0.461, 0,.867]
 
 onready var mode = "show"
@@ -83,20 +82,20 @@ func _process(delta):
 				i +=1
 	
 	elif mode == "play" and len(time_elapsed) == 3:
-		#step_1
-		stairs[0].get_node("collision").disabled = false
-		stairs[0].get_node("sprite").play("on")
-		
-		#step_2
-		if time_elapsed[0] in range(times[0]*100 - 100, times[0]*100 + 100) and time_elapsed[1] in range(times[1]*100 - 100, times[1]*100 + 100) and time_elapsed[2] in range(times[2]*100 - 100, times[2]*100 + 100):
+				
+		if time_elapsed[0] > times[0]*1000 - 200 and time_elapsed[0] < times[0]*1000 + 200:
+			if time_elapsed[1] > times[1]*1000 - 200 and time_elapsed[1] < times[1]*1000 + 200:
+				if time_elapsed[2] > times[2]*1000 - 200 and time_elapsed[2] < times[1]*1000 + 200:		
+					for i in range(len(stairs)):
+						stairs[i].get_node("collision").disabled = false
+						stairs[i].get_node("sprite").play("on")
+		else:
 			for i in range(len(stairs)):
 				stairs[i].get_node("collision").disabled = false
 				stairs[i].get_node("sprite").play("on")
-		else:
-			stairs[0].get_node("collision").disabled = false
-			stairs[0].get_node("sprite").play("on")
 		
 		get_parent().get_parent().get_parent().get_node("Bard").jump_stairs()
+		set_process(false)
 		"""
 		
 	elif mode == "play" and i == 4:

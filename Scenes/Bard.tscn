@@ -1,16 +1,16 @@
 [gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Scripts/Bard.gd" type="Script" id=1]
-[ext_resource path="res://Images/Aedo/Playing/playing-01.png" type="Texture" id=2]
-[ext_resource path="res://Images/Aedo/Playing/playing-02.png" type="Texture" id=3]
-[ext_resource path="res://Images/Aedo/Playing/playing-03.png" type="Texture" id=4]
-[ext_resource path="res://Images/Aedo/Idle/idle-01.png" type="Texture" id=5]
-[ext_resource path="res://Images/Aedo/Idle/idle-02.png" type="Texture" id=6]
-[ext_resource path="res://Images/Aedo/Idle/idle-03.png" type="Texture" id=7]
-[ext_resource path="res://Images/Aedo/Die/die-01.png" type="Texture" id=8]
-[ext_resource path="res://Images/Aedo/Die/die-02.png" type="Texture" id=9]
-[ext_resource path="res://Images/Aedo/Die/die-03.png" type="Texture" id=10]
-[ext_resource path="res://Images/Aedo/Die/die-04.png" type="Texture" id=11]
+[ext_resource path="res://Images/Aedo/Idle/idle-01.png" type="Texture" id=2]
+[ext_resource path="res://Images/Aedo/Idle/idle-02.png" type="Texture" id=3]
+[ext_resource path="res://Images/Aedo/Idle/idle-03.png" type="Texture" id=4]
+[ext_resource path="res://Images/Aedo/Die/die-01.png" type="Texture" id=5]
+[ext_resource path="res://Images/Aedo/Die/die-02.png" type="Texture" id=6]
+[ext_resource path="res://Images/Aedo/Die/die-03.png" type="Texture" id=7]
+[ext_resource path="res://Images/Aedo/Die/die-04.png" type="Texture" id=8]
+[ext_resource path="res://Images/Aedo/Playing/playing-01.png" type="Texture" id=9]
+[ext_resource path="res://Images/Aedo/Playing/playing-02.png" type="Texture" id=10]
+[ext_resource path="res://Images/Aedo/Playing/playing-03.png" type="Texture" id=11]
 [ext_resource path="res://Images/Aedo/Crawl/crawl-01.png" type="Texture" id=12]
 [ext_resource path="res://Images/Aedo/Crawl/crawl-02.png" type="Texture" id=13]
 [ext_resource path="res://Images/Aedo/Jump/jump-01.png" type="Texture" id=14]
@@ -30,18 +30,18 @@
 
 animations = [ {
 "frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ) ],
-"loop": true,
-"name": "play",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
 "loop": false,
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ],
+"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
 "loop": true,
 "name": "die",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "play",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 12 ), ExtResource( 13 ) ],
@@ -71,7 +71,7 @@ animations = [ {
 } ]
 _sections_unfolded = [ "Resource" ]
 
-[node name="Bard" type="KinematicBody2D" index="0"]
+[node name="Bard" type="KinematicBody2D"]
 
 input_pickable = false
 collision_layer = 1
@@ -141,7 +141,7 @@ autostart = false
 [node name="jump_stairs_timer" type="Timer" parent="." index="9"]
 
 process_mode = 1
-wait_time = 0.1
+wait_time = 0.2
 one_shot = true
 autostart = false
 

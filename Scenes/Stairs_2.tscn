@@ -1,14 +1,14 @@
 [gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://Images/Tavern/Taverna_02.png" type="Texture" id=1]
+[ext_resource path="res://Images/Tavern/Taverna_03.png" type="Texture" id=1]
 [ext_resource path="res://Images/Assets_tavern/degrau_enable.png" type="Texture" id=2]
 [ext_resource path="res://Images/Assets_tavern/degrau_disable.png" type="Texture" id=3]
-[ext_resource path="res://Scripts/Sheet_0.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/Sheet_1.gd" type="Script" id=4]
 [ext_resource path="res://Images/pauta.png" type="Texture" id=5]
-[ext_resource path="res://Sound/Desafio_Ritmico_1/motivo_nota1.wav" type="AudioStream" id=6]
-[ext_resource path="res://Sound/Desafio_Ritmico_1/motivo_nota2.wav" type="AudioStream" id=7]
-[ext_resource path="res://Sound/Desafio_Ritmico_1/motivo_nota3.wav" type="AudioStream" id=8]
-[ext_resource path="res://Sound/Desafio_Ritmico_1/motivo_nota4.wav" type="AudioStream" id=9]
+[ext_resource path="res://Sound/Desafio_Ritmico_2/motivo_nota1.wav" type="AudioStream" id=6]
+[ext_resource path="res://Sound/Desafio_Ritmico_2/motivo_nota2.wav" type="AudioStream" id=7]
+[ext_resource path="res://Sound/Desafio_Ritmico_2/motivo_nota3.wav" type="AudioStream" id=8]
+[ext_resource path="res://Sound/Desafio_Ritmico_2/motivo_nota4.wav" type="AudioStream" id=9]
 
 [sub_resource type="SpriteFrames" id=1]
 
@@ -29,111 +29,14 @@ animations = [ {
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
 visible = false
-position = Vector2( 1066.58, 899.922 )
+position = Vector2( 1069.79, 1498.66 )
 scale = Vector2( 0.533329, 0.533329 )
 texture = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="stair_0" type="StaticBody2D" parent="." index="1"]
+[node name="stair_3" type="StaticBody2D" parent="." index="1"]
 
-editor/display_folded = true
-position = Vector2( 1770, 925 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-constant_linear_velocity = Vector2( 0, 0 )
-constant_angular_velocity = 0.0
-friction = 1.0
-bounce = 0.0
-_sections_unfolded = [ "Collision", "Transform" ]
-
-[node name="sprite" type="AnimatedSprite" parent="stair_0" index="0"]
-
-scale = Vector2( 0.535166, 0.535166 )
-frames = SubResource( 1 )
-animation = "off"
-_sections_unfolded = [ "Transform" ]
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="collision" type="CollisionPolygon2D" parent="stair_0" index="1"]
-
-visible = false
-build_mode = 0
-polygon = PoolVector2Array( -32.9622, 12.0261, 33.8388, 12.0261, 33.8388, 0.137802, 45.161, 0.137802, 45.0888, -11.1878, -44.472, -11.0483, -44.193, 0.530405, -32.8933, 0.530405 )
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="stair_1" type="StaticBody2D" parent="." index="2"]
-
-editor/display_folded = true
-position = Vector2( 1670, 985 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-constant_linear_velocity = Vector2( 0, 0 )
-constant_angular_velocity = 0.0
-friction = 1.0
-bounce = 0.0
-_sections_unfolded = [ "Transform" ]
-
-[node name="sprite" type="AnimatedSprite" parent="stair_1" index="0"]
-
-scale = Vector2( 0.535166, 0.535166 )
-frames = SubResource( 1 )
-animation = "off"
-_sections_unfolded = [ "Transform" ]
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="collision" type="CollisionPolygon2D" parent="stair_1" index="1"]
-
-visible = false
-build_mode = 0
-polygon = PoolVector2Array( -32.9622, 12.0261, 33.8388, 12.0261, 33.8388, 0.137802, 45.161, 0.137802, 45.0888, -11.1878, -44.472, -11.0483, -44.193, 0.530405, -32.8933, 0.530405 )
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="stair_2" type="StaticBody2D" parent="." index="3"]
-
-editor/display_folded = true
-position = Vector2( 1570, 1045 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-constant_linear_velocity = Vector2( 0, 0 )
-constant_angular_velocity = 0.0
-friction = 1.0
-bounce = 0.0
-_sections_unfolded = [ "Transform" ]
-
-[node name="sprite" type="AnimatedSprite" parent="stair_2" index="0"]
-
-scale = Vector2( 0.535166, 0.535166 )
-frames = SubResource( 1 )
-animation = "off"
-_sections_unfolded = [ "Transform" ]
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="collision" type="CollisionPolygon2D" parent="stair_2" index="1"]
-
-visible = false
-build_mode = 0
-polygon = PoolVector2Array( -32.9622, 12.0261, 33.8388, 12.0261, 33.8388, 0.137802, 45.161, 0.137802, 45.0888, -11.1878, -44.472, -11.0483, -44.193, 0.530405, -32.8933, 0.530405 )
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="stair_3" type="StaticBody2D" parent="." index="4"]
-
-editor/display_folded = true
-position = Vector2( 1470, 1105 )
+position = Vector2( 678.968, 1723.25 )
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
@@ -162,10 +65,102 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Sheet_0" type="StaticBody2D" parent="." index="5"]
+[node name="stair_2" type="StaticBody2D" parent="." index="2"]
 
-editor/display_folded = true
-position = Vector2( 1899.6, 845.716 )
+position = Vector2( 578.968, 1663.25 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+_sections_unfolded = [ "Transform" ]
+
+[node name="sprite" type="AnimatedSprite" parent="stair_2" index="0"]
+
+scale = Vector2( 0.535166, 0.535166 )
+frames = SubResource( 1 )
+animation = "off"
+_sections_unfolded = [ "Transform" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="collision" type="CollisionPolygon2D" parent="stair_2" index="1"]
+
+visible = false
+build_mode = 0
+polygon = PoolVector2Array( -32.9622, 12.0261, 33.8388, 12.0261, 33.8388, 0.137802, 45.161, 0.137802, 45.0888, -11.1878, -44.472, -11.0483, -44.193, 0.530405, -32.8933, 0.530405 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="stair_1" type="StaticBody2D" parent="." index="3"]
+
+position = Vector2( 478.968, 1603.25 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+_sections_unfolded = [ "Transform" ]
+
+[node name="sprite" type="AnimatedSprite" parent="stair_1" index="0"]
+
+scale = Vector2( 0.535166, 0.535166 )
+frames = SubResource( 1 )
+animation = "off"
+_sections_unfolded = [ "Transform" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="collision" type="CollisionPolygon2D" parent="stair_1" index="1"]
+
+visible = false
+build_mode = 0
+polygon = PoolVector2Array( -32.9622, 12.0261, 33.8388, 12.0261, 33.8388, 0.137802, 45.161, 0.137802, 45.0888, -11.1878, -44.472, -11.0483, -44.193, 0.530405, -32.8933, 0.530405 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="stair_0" type="StaticBody2D" parent="." index="4"]
+
+position = Vector2( 378.968, 1543.25 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+_sections_unfolded = [ "Transform" ]
+
+[node name="sprite" type="AnimatedSprite" parent="stair_0" index="0"]
+
+scale = Vector2( 0.535166, 0.535166 )
+frames = SubResource( 1 )
+animation = "off"
+_sections_unfolded = [ "Transform" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="collision" type="CollisionPolygon2D" parent="stair_0" index="1"]
+
+visible = false
+build_mode = 0
+polygon = PoolVector2Array( -32.9622, 12.0261, 33.8388, 12.0261, 33.8388, 0.137802, 45.161, 0.137802, 45.0888, -11.1878, -44.472, -11.0483, -44.193, 0.530405, -32.8933, 0.530405 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Sheet_1" type="StaticBody2D" parent="." index="5"]
+
+position = Vector2( 228.051, 1450.79 )
 scale = Vector2( 0.333448, 0.333448 )
 input_pickable = false
 collision_layer = 1
@@ -175,11 +170,8 @@ constant_angular_velocity = 0.0
 friction = 1.0
 bounce = 0.0
 script = ExtResource( 4 )
-__meta__ = {
-"_edit_lock_": true
-}
 
-[node name="sprite" type="Sprite" parent="Sheet_0" index="0"]
+[node name="sprite" type="Sprite" parent="Sheet_1" index="0"]
 
 texture = ExtResource( 5 )
 _sections_unfolded = [ "Transform" ]
@@ -187,7 +179,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="collision" type="CollisionPolygon2D" parent="Sheet_0" index="1"]
+[node name="collision" type="CollisionPolygon2D" parent="Sheet_1" index="1"]
 
 build_mode = 0
 polygon = PoolVector2Array( -54.5889, 41.9768, -54.5889, -69.4426, -45.7144, -69.4426, -45.2217, -80.2886, 54.8589, -80.7817, 55.8447, -70.9214, 64.2256, -71.4143, 65.7046, -62.0474, 74.5791, -61.0613, 75.0718, -40.355, 66.1978, -39.8621, 65.7046, -30.002, 54.3657, -29.509, 54.3657, 71.0642, 45.4912, 71.0642, 44.9985, 80.9243, -65.4346, 80.4314, -65.4346, 71.0642, -75.7881, 70.5713, -75.2949, 49.3718, -64.4487, 49.865, -64.9419, 40.9907 )
@@ -204,17 +196,15 @@ autostart = false
 
 [node name="initial_position" type="Position2D" parent="." index="7"]
 
-position = Vector2( 1870.18, 855.711 )
+position = Vector2( 233.351, 1456.91 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="step_0" type="Position2D" parent="." index="8"]
 
-visible = false
-position = Vector2( 1716.65, 876.131 )
+position = Vector2( 410.024, 1500.22 )
 
 [node name="step_1" type="Position2D" parent="." index="9"]
 
-visible = false
 position = Vector2( 1634.67, 949.861 )
 
 [node name="step_2" type="Position2D" parent="." index="10"]
@@ -271,6 +261,6 @@ autoplay = false
 mix_target = 0
 bus = "Master"
 
-[connection signal="timeout" from="rythm_timer" to="Sheet_0" method="_on_rythm_timer_timeout"]
+[connection signal="timeout" from="rythm_timer" to="Sheet_1" method="_on_rythm_timer_timeout"]
 
 

@@ -11,7 +11,7 @@ func collision_handling(collision):
 	if collision:
 		if collision.collider.has_method("lost_life"):
 			collision.collider.lost_life("enemy",[get_node("collision")])
-			queue_free()
+		queue_free()
 
 func shoot(enemy_rotation, arrow_position):
 	global_position = arrow_position

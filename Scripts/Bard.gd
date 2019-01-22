@@ -55,6 +55,9 @@ onready var god_mode = get_node("god_mode")
 onready var deadly_object = []
 var type 
 
+onready var shooting = get_parent().get_node("start_shooting").global_position
+onready var arrow_shooting = false
+
 #===================================================================
 func _ready():	
 	animations.play(action)
@@ -148,7 +151,6 @@ func normal_physics(delta):
 			sheet = collision.collider
 			steps = sheet.get_steps()
 			next_step = steps[s]
-			print("steps",steps)
 			rythm_game_mode()
 		elif collision.collider.has_method("collect_melody"):
 			game_position = collision.collider.collect_melody()
@@ -188,8 +190,7 @@ func rythm_physics(delta):
 	elif jumping_steps and read_input:
 		var direction = Vector2()
 		direction = (next_step - global_position)
-		velocity = move_and_slide(Vector2(direction.x * 15, direction.y * 5))
-		jump_stairs()
+		velocity = move_and_slide(Vector2(direction.x * 2, direction.y * 0.1))
 	else:
 		velocity = move_and_slide(velocity, Vector2(0,-1))
 		collision = move_and_collide(velocity * delta)
@@ -219,6 +220,9 @@ func melody_physics(delta):
 #===================================================================	
 func _physics_process(delta):
 	velocity.y += gravity * delta
+	if !arrow_shooting and abs(global_position.x - shooting.x) < 50:
+		get_parent().get_node("scene_two/Enemy_arrow").start_shooting()
+		arrow_shooting = true
 	if !jumping_steps:
 		velocity.x = 0
 	if read_input:
@@ -235,10 +239,10 @@ func _physics_process(delta):
 #===================================================================
 func _on_animations_animation_finished():
 	if action == "jump":
-		print("fez a animação")
 		read_input = true
 #===================================================================
 func _on_jump_timer_timeout():
+	print("jump!")
 	velocity.y = jump_speed
 #===================================================================
 func rythm_game_mode():
@@ -252,14 +256,15 @@ func change_mode(new_mode):
 	mode = new_mode
 #===================================================================
 func _on_jump_stairs_timer_timeout():
-	print("entrou no timer")
+	print("entrou no jumping timer")
 	if s == 4:
 		mode = "exploring"
 		s = 0 
 	else:
 		s += 1
 		next_step = steps[s]
-		jump_stairs()
+		#jump_stairs()
+		mode = "exploring"
 #===================================================================
 func _on_melody_timer_timeout():
 	sheet.generate_next_mug()
@@ -281,8 +286,8 @@ func _on_god_mode_timeout():
 		deadly_object = []
 
 func jump_stairs():
-		action = "jump"	
-		action_shape = jump
-		jump_stairs_timer.start()
-		jump_timer.start()
-		jumping_steps = true
+	action = "jump"	
+	action_shape = jump
+	jump_stairs_timer.start()
+	jump_timer.start()
+	jumping_steps = true
