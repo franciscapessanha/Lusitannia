@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/motivo_nota1.wav-b7c98e95f10b96a692067b283b7b9e64.sample"
+
+[deps]
+
+source_file="res://Sound/Desafio_Ritmico_1/motivo_nota1.wav"
+dest_files=[ "res://.import/motivo_nota1.wav-b7c98e95f10b96a692067b283b7b9e64.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

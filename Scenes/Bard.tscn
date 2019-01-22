@@ -1,77 +1,77 @@
 [gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Scripts/Bard.gd" type="Script" id=1]
-[ext_resource path="res://Images/Aedo/Idle/idle-01.png" type="Texture" id=2]
-[ext_resource path="res://Images/Aedo/Idle/idle-02.png" type="Texture" id=3]
-[ext_resource path="res://Images/Aedo/Idle/idle-03.png" type="Texture" id=4]
-[ext_resource path="res://Images/Aedo/Playing/playing-01.png" type="Texture" id=5]
-[ext_resource path="res://Images/Aedo/Playing/playing-02.png" type="Texture" id=6]
-[ext_resource path="res://Images/Aedo/Playing/playing-03.png" type="Texture" id=7]
-[ext_resource path="res://Images/Aedo/Crawl/crawl-01.png" type="Texture" id=8]
-[ext_resource path="res://Images/Aedo/Crawl/crawl-02.png" type="Texture" id=9]
-[ext_resource path="res://Images/Aedo/Jump/jump-01.png" type="Texture" id=10]
-[ext_resource path="res://Images/Aedo/Jump/jump-02.png" type="Texture" id=11]
-[ext_resource path="res://Images/Aedo/Jump/jump-03.png" type="Texture" id=12]
-[ext_resource path="res://Images/Aedo/Pull/pull-01.png" type="Texture" id=13]
-[ext_resource path="res://Images/Aedo/Pull/pull-02.png" type="Texture" id=14]
-[ext_resource path="res://Images/Aedo/Pull/pull-03.png" type="Texture" id=15]
-[ext_resource path="res://Images/Aedo/Push/push-01.png" type="Texture" id=16]
-[ext_resource path="res://Images/Aedo/Push/push-02.png" type="Texture" id=17]
-[ext_resource path="res://Images/Aedo/Push/push-03.png" type="Texture" id=18]
-[ext_resource path="res://Images/Aedo/Run/run-01.png" type="Texture" id=19]
-[ext_resource path="res://Images/Aedo/Run/run-02.png" type="Texture" id=20]
-[ext_resource path="res://Images/Aedo/Run/run-03.png" type="Texture" id=21]
-[ext_resource path="res://Images/Aedo/Die/die-01.png" type="Texture" id=22]
-[ext_resource path="res://Images/Aedo/Die/die-02.png" type="Texture" id=23]
-[ext_resource path="res://Images/Aedo/Die/die-03.png" type="Texture" id=24]
-[ext_resource path="res://Images/Aedo/Die/die-04.png" type="Texture" id=25]
+[ext_resource path="res://Images/Aedo/Playing/playing-01.png" type="Texture" id=2]
+[ext_resource path="res://Images/Aedo/Playing/playing-02.png" type="Texture" id=3]
+[ext_resource path="res://Images/Aedo/Playing/playing-03.png" type="Texture" id=4]
+[ext_resource path="res://Images/Aedo/Idle/idle-01.png" type="Texture" id=5]
+[ext_resource path="res://Images/Aedo/Idle/idle-02.png" type="Texture" id=6]
+[ext_resource path="res://Images/Aedo/Idle/idle-03.png" type="Texture" id=7]
+[ext_resource path="res://Images/Aedo/Die/die-01.png" type="Texture" id=8]
+[ext_resource path="res://Images/Aedo/Die/die-02.png" type="Texture" id=9]
+[ext_resource path="res://Images/Aedo/Die/die-03.png" type="Texture" id=10]
+[ext_resource path="res://Images/Aedo/Die/die-04.png" type="Texture" id=11]
+[ext_resource path="res://Images/Aedo/Crawl/crawl-01.png" type="Texture" id=12]
+[ext_resource path="res://Images/Aedo/Crawl/crawl-02.png" type="Texture" id=13]
+[ext_resource path="res://Images/Aedo/Jump/jump-01.png" type="Texture" id=14]
+[ext_resource path="res://Images/Aedo/Jump/jump-02.png" type="Texture" id=15]
+[ext_resource path="res://Images/Aedo/Jump/jump-03.png" type="Texture" id=16]
+[ext_resource path="res://Images/Aedo/Pull/pull-01.png" type="Texture" id=17]
+[ext_resource path="res://Images/Aedo/Pull/pull-02.png" type="Texture" id=18]
+[ext_resource path="res://Images/Aedo/Pull/pull-03.png" type="Texture" id=19]
+[ext_resource path="res://Images/Aedo/Push/push-01.png" type="Texture" id=20]
+[ext_resource path="res://Images/Aedo/Push/push-02.png" type="Texture" id=21]
+[ext_resource path="res://Images/Aedo/Push/push-03.png" type="Texture" id=22]
+[ext_resource path="res://Images/Aedo/Run/run-01.png" type="Texture" id=23]
+[ext_resource path="res://Images/Aedo/Run/run-02.png" type="Texture" id=24]
+[ext_resource path="res://Images/Aedo/Run/run-03.png" type="Texture" id=25]
 
 [sub_resource type="SpriteFrames" id=1]
 
 animations = [ {
 "frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ) ],
 "loop": true,
-"name": "idle",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
-"loop": true,
 "name": "play",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 8 ), ExtResource( 9 ) ],
+"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
+"loop": false,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "die",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 12 ), ExtResource( 13 ) ],
 "loop": true,
 "name": "crawl",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 11 ) ],
+"frames": [ ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 15 ) ],
 "loop": false,
 "name": "jump",
 "speed": 8.0
 }, {
-"frames": [ ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ) ],
+"frames": [ ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ) ],
 "loop": true,
 "name": "pull",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ) ],
+"frames": [ ExtResource( 20 ), ExtResource( 21 ), ExtResource( 22 ) ],
 "loop": true,
 "name": "push",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ) ],
+"frames": [ ExtResource( 23 ), ExtResource( 24 ), ExtResource( 25 ) ],
 "loop": true,
 "name": "run",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 22 ), ExtResource( 23 ), ExtResource( 24 ), ExtResource( 25 ) ],
-"loop": true,
-"name": "die",
 "speed": 5.0
 } ]
 _sections_unfolded = [ "Resource" ]
 
-[node name="Bard" type="KinematicBody2D"]
+[node name="Bard" type="KinematicBody2D" index="0"]
 
 input_pickable = false
 collision_layer = 1
@@ -141,14 +141,37 @@ autostart = false
 [node name="jump_stairs_timer" type="Timer" parent="." index="9"]
 
 process_mode = 1
-wait_time = 0.6
+wait_time = 0.1
 one_shot = true
 autostart = false
+
+[node name="melody_timer" type="Timer" parent="." index="10"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = true
+autostart = false
+
+[node name="god_mode" type="Timer" parent="." index="11"]
+
+process_mode = 1
+wait_time = 3.0
+one_shot = true
+autostart = false
+
+[node name="feet" type="Position2D" parent="." index="12"]
+
+position = Vector2( -93.2015, 796.827 )
+scale = Vector2( 4.86646, 3.57728 )
 
 [connection signal="animation_finished" from="animations" to="." method="_on_animations_animation_finished"]
 
 [connection signal="timeout" from="jump_timer" to="." method="_on_jump_timer_timeout"]
 
 [connection signal="timeout" from="jump_stairs_timer" to="." method="_on_jump_stairs_timer_timeout"]
+
+[connection signal="timeout" from="melody_timer" to="." method="_on_melody_timer_timeout"]
+
+[connection signal="timeout" from="god_mode" to="." method="_on_god_mode_timeout"]
 
 

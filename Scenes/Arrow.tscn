@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/Arrow.gd" type="Script" id=1]
+[ext_resource path="res://Images/Enemy_arrow/arrow.png" type="Texture" id=2]
+
+[node name="arrow" type="KinematicBody2D"]
+
+position = Vector2( -9.24017, 0.924026 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 1 )
+
+[node name="sprite" type="Sprite" parent="." index="0"]
+
+scale = Vector2( 0.11923, 0.11923 )
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Transform" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="collision" type="CollisionPolygon2D" parent="." index="1"]
+
+build_mode = 0
+polygon = PoolVector2Array( -24.8928, 7.61861, -24.8928, -7.75923, -19.9719, -7.75923, -19.9719, -2.53077, -14.7435, -2.53077, -14.8972, -7.60545, -9.82254, -7.60545, -9.82254, -2.68454, 14.782, -2.53077, 14.782, -7.75923, 20.1643, -7.75923, 20.1643, -2.37698, 24.7776, -2.37698, 24.6238, 2.6977, 19.7029, 2.54393, 19.7029, 7.31106, 14.3207, 7.46484, 14.3207, 2.54393, -9.82254, 2.39015, -9.82254, 7.92617, -14.8972, 7.92617, -14.7435, 2.6977, -19.9719, 2.6977, -19.8181, 7.61861 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+

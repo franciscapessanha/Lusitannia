@@ -1,27 +1,27 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scripts/Fight.gd" type="Script" id=1]
-[ext_resource path="res://Images/Fight/Going/lutataverna-01.png" type="Texture" id=2]
-[ext_resource path="res://Images/Fight/Going/lutataverna-02.png" type="Texture" id=3]
-[ext_resource path="res://Images/Fight/Going/lutataverna-03.png" type="Texture" id=4]
-[ext_resource path="res://Images/Fight/Cheers/luta_cheers-01.png" type="Texture" id=5]
-[ext_resource path="res://Images/Fight/Cheers/luta_cheers-02.png" type="Texture" id=6]
+[ext_resource path="res://Images/Fight/Cheers/luta_cheers-01.png" type="Texture" id=2]
+[ext_resource path="res://Images/Fight/Cheers/luta_cheers-02.png" type="Texture" id=3]
+[ext_resource path="res://Images/Fight/Going/lutataverna-01.png" type="Texture" id=4]
+[ext_resource path="res://Images/Fight/Going/lutataverna-02.png" type="Texture" id=5]
+[ext_resource path="res://Images/Fight/Going/lutataverna-03.png" type="Texture" id=6]
 
 [sub_resource type="SpriteFrames" id=1]
 
 animations = [ {
-"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ) ],
-"loop": true,
-"name": "going",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 5 ), ExtResource( 6 ) ],
+"frames": [ ExtResource( 2 ), ExtResource( 3 ) ],
 "loop": true,
 "name": "cheers",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "going",
+"speed": 5.0
 } ]
 
-[node name="Fight" type="KinematicBody2D" index="0"]
+[node name="Fight" type="KinematicBody2D"]
 
 input_pickable = false
 collision_layer = 1

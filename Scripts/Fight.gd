@@ -1,11 +1,10 @@
 extends KinematicBody2D
 
 onready var animations = get_node("animations")
-func _ready():
-	# Called when the node is added to the scene for the first time.
-	# Initialization here
-	pass
+var animation = "going"
 
+func change_animation(new_animation):
+	animation = new_animation
 func _process(delta):
-	animations.play("going")
+	animations.play(animation)
 

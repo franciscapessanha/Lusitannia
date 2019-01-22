@@ -1,78 +1,114 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=27 format=2]
 
-[ext_resource path="res://Scenes/Scene_one.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Scripts/Box.gd" type="Script" id=2]
-[ext_resource path="res://Images/Assets_tavern/caixa.png" type="Texture" id=3]
-[ext_resource path="res://Scenes/Scene_two.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/Stairs.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Images/Tavern/Taverna2-03.png" type="Texture" id=6]
-[ext_resource path="res://Scripts/Sheet_1.gd" type="Script" id=7]
-[ext_resource path="res://Images/pauta.png" type="Texture" id=8]
-[ext_resource path="res://Scenes/Aheet_2.gd" type="Script" id=9]
-[ext_resource path="res://Scenes/Enemy.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Scenes/Barman.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Scenes/Fight.tscn" type="PackedScene" id=12]
-[ext_resource path="res://Scenes/Bard.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Scenes/UI.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Scene_one.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scripts/Box.gd" type="Script" id=3]
+[ext_resource path="res://Images/Assets_tavern/caixa.png" type="Texture" id=4]
+[ext_resource path="res://Scenes/bottles.gd" type="Script" id=5]
+[ext_resource path="res://Scenes/Scene_two.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Stairs.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Images/Assets_tavern/cacosvideo-01.png" type="Texture" id=8]
+[ext_resource path="res://Images/Assets_tavern/barril-01.png" type="Texture" id=9]
+[ext_resource path="res://Images/Assets_tavern/mesa-01.png" type="Texture" id=10]
+[ext_resource path="res://Scripts/Enemy_arrow.gd" type="Script" id=11]
+[ext_resource path="res://Images/Enemy_arrow/Idle/bandit_arrow_idle-01.png" type="Texture" id=12]
+[ext_resource path="res://Images/Enemy_arrow/Idle/bandit_arrow_idle-02.png" type="Texture" id=13]
+[ext_resource path="res://Images/Enemy_arrow/Attack/bandit_arrow_attack-01.png" type="Texture" id=14]
+[ext_resource path="res://Images/Enemy_arrow/Attack/bandit_arrow_attack-02.png" type="Texture" id=15]
+[ext_resource path="res://Images/Enemy_arrow/Attack/bandit_arrow_attack-03.png" type="Texture" id=16]
+[ext_resource path="res://Scenes/Scene_three.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Scripts/Sheet_1.gd" type="Script" id=18]
+[ext_resource path="res://Images/pauta.png" type="Texture" id=19]
+[ext_resource path="res://Scripts/Sheet_2.gd" type="Script" id=20]
+[ext_resource path="res://Scenes/Enemy.tscn" type="PackedScene" id=21]
+[ext_resource path="res://Scenes/Barman.tscn" type="PackedScene" id=22]
+[ext_resource path="res://Scenes/Fight.tscn" type="PackedScene" id=23]
+[ext_resource path="res://Scenes/Bard.tscn" type="PackedScene" id=24]
 
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
 extents = Vector2( 69.1957, 69.2479 )
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="SpriteFrames" id=4]
 
-custom_solver_bias = 0.0
-extents = Vector2( 846.689, 12.0176 )
-
-[sub_resource type="RectangleShape2D" id=3]
-
-custom_solver_bias = 0.0
-extents = Vector2( 132.926, 10 )
-
-[sub_resource type="RectangleShape2D" id=4]
-
-custom_solver_bias = 0.0
-extents = Vector2( 341.294, 10 )
+animations = [ {
+"frames": [ ExtResource( 12 ), ExtResource( 13 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ) ],
+"loop": true,
+"name": "attack",
+"speed": 5.0
+} ]
 
 [node name="World" type="Node2D"]
 
-[node name="scene_one" parent="." index="0" instance=ExtResource( 1 )]
+[node name="UI" parent="." index="0" instance=ExtResource( 1 )]
+
+[node name="scene_one" parent="." index="1" instance=ExtResource( 2 )]
+
+editor/display_folded = true
 
 [node name="Box" type="KinematicBody2D" parent="scene_one" index="7"]
 
 editor/display_folded = true
-position = Vector2( 1321.19, 522.36 )
+position = Vector2( 1321.19, 518.057 )
 scale = Vector2( 0.798598, 0.798598 )
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
 collision/safe_margin = 0.001
-script = ExtResource( 2 )
+script = ExtResource( 3 )
 _sections_unfolded = [ "Transform", "collision" ]
 
 [node name="Sprite" type="Sprite" parent="scene_one/Box" index="0"]
 
+position = Vector2( -0.538809, 1.61655 )
 scale = Vector2( 0.670402, 0.670402 )
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 _sections_unfolded = [ "Transform" ]
-__meta__ = {
-"_edit_lock_": true
-}
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="scene_one/Box" index="1"]
+[node name="collision" type="CollisionShape2D" parent="scene_one/Box" index="1"]
 
+position = Vector2( -0.538818, 1.61658 )
 shape = SubResource( 1 )
-__meta__ = {
-"_edit_lock_": true
-}
 
-[node name="scene_two" parent="." index="1" instance=ExtResource( 4 )]
+[node name="box_position" type="Position2D" parent="scene_one/Box" index="2"]
 
-[node name="stairs" parent="." index="2" instance=ExtResource( 5 )]
+[node name="bottles" type="StaticBody2D" parent="scene_one" index="8"]
 
-[node name="scene_three" type="StaticBody2D" parent="." index="3"]
+editor/display_folded = true
+scale = Vector2( 0.798598, 0.798598 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+script = ExtResource( 5 )
+_sections_unfolded = [ "Transform" ]
 
-position = Vector2( -60.0423, 732.026 )
+[node name="collision" type="CollisionPolygon2D" parent="scene_one/bottles" index="0"]
+
+position = Vector2( -0.140322, -2.65075 )
+scale = Vector2( 1.25219, 1.25219 )
+build_mode = 0
+polygon = PoolVector2Array( 510.688, 578.246, 510.609, 533.026, 521.117, 533.001, 522.086, 510.699, 533.897, 510.699, 544.904, 519.573, 554.129, 519.974, 566.043, 510.152, 579.052, 510.152, 590.627, 528.397, 601.054, 527.193, 607.471, 523.706, 613.462, 528.699, 613.462, 532.693, 617.457, 524.705, 626.444, 528.699, 641.422, 528.699, 657.398, 530.696, 686.356, 528.699, 701.335, 541.68, 712.001, 553.931, 712.838, 568.163, 691.071, 578.21 )
+
+[node name="scene_two" parent="." index="2" instance=ExtResource( 6 )]
+
+position = Vector2( -0.371826, 0 )
+_sections_unfolded = [ "Collision" ]
+
+[node name="stairs_two" parent="scene_two" index="5" instance=ExtResource( 7 )]
+
+[node name="bottles_0" type="StaticBody2D" parent="scene_two" index="6"]
+
+editor/display_folded = true
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
@@ -81,33 +117,156 @@ constant_angular_velocity = 0.0
 friction = 1.0
 bounce = 0.0
 
-[node name="tavern_three" type="Sprite" parent="scene_three" index="0"]
+[node name="sprite_bottles_0" type="Sprite" parent="scene_two/bottles_0" index="0"]
 
-position = Vector2( 1129.83, 766.632 )
-scale = Vector2( 0.533329, 0.533329 )
-texture = ExtResource( 6 )
+position = Vector2( 1573.98, 1142.84 )
+scale = Vector2( -0.542253, 0.542253 )
+texture = ExtResource( 8 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="door_two_1" type="Position2D" parent="scene_three" index="1"]
+[node name="sprite_bottles_1" type="Sprite" parent="scene_two/bottles_0" index="1"]
 
-position = Vector2( 211.357, 705.898 )
-scale = Vector2( 2.71454, 2.52404 )
+position = Vector2( 1788.94, 1142.49 )
+scale = Vector2( -0.542253, 0.542253 )
+texture = ExtResource( 8 )
+_sections_unfolded = [ "Transform" ]
 
-[node name="floor" type="CollisionShape2D" parent="scene_three" index="2"]
+[node name="collision_bottles" type="CollisionPolygon2D" parent="scene_two/bottles_0" index="2"]
 
-position = Vector2( 1131.15, 1055.97 )
-scale = Vector2( 1.26366, 1 )
-shape = SubResource( 2 )
+build_mode = 0
+polygon = PoolVector2Array( 1467.25, 1179.43, 1473.29, 1154.49, 1494.46, 1142.39, 1562.47, 1118.96, 1607.82, 1106.12, 1665.26, 1106.87, 1780.14, 1118.96, 1827, 1107.63, 1843.62, 1107.63, 1845.89, 1178.67 )
 
-[node name="floor_door" type="CollisionShape2D" parent="scene_three" index="3"]
+[node name="barris_0" type="Node2D" parent="scene_two" index="7"]
 
-position = Vector2( 215.732, 781.253 )
-shape = SubResource( 3 )
+editor/display_folded = true
+position = Vector2( -17.6791, 0 )
+_sections_unfolded = [ "Transform" ]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="scene_three" index="4"]
+[node name="barril_0" type="Sprite" parent="scene_two/barris_0" index="0"]
 
-position = Vector2( 1156.91, 882.225 )
-shape = SubResource( 4 )
+position = Vector2( 2043.79, 1116.65 )
+scale = Vector2( 0.526105, 0.526105 )
+texture = ExtResource( 9 )
+
+[node name="barril_1" type="Sprite" parent="scene_two/barris_0" index="1"]
+
+position = Vector2( 2000.88, 997.476 )
+scale = Vector2( 0.526105, 0.526105 )
+texture = ExtResource( 9 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="barril_2" type="Sprite" parent="scene_two/barris_0" index="2"]
+
+position = Vector2( 1918.08, 1115.1 )
+scale = Vector2( 0.526105, 0.526105 )
+texture = ExtResource( 9 )
+
+[node name="table" type="StaticBody2D" parent="scene_two" index="8"]
+
+editor/display_folded = true
+position = Vector2( 770.296, 1024.25 )
+scale = Vector2( 0.916601, 0.916601 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="sprite" type="Sprite" parent="scene_two/table" index="0"]
+
+position = Vector2( -2.51819, 80.5812 )
+scale = Vector2( 0.621435, 0.621435 )
+texture = ExtResource( 10 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="barril_1" type="StaticBody2D" parent="scene_two" index="9"]
+
+position = Vector2( -58, 0 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="Sprite" type="Sprite" parent="scene_two/barril_1" index="0"]
+
+position = Vector2( 1223.87, 1116.12 )
+scale = Vector2( 0.526105, 0.526105 )
+texture = ExtResource( 9 )
+_sections_unfolded = [ "Transform" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="scene_two/barril_1" index="1"]
+
+build_mode = 0
+polygon = PoolVector2Array( 1168.34, 1167.08, 1168.82, 1067.47, 1180.31, 1067.95, 1179.84, 1056.45, 1266.52, 1056.45, 1266.99, 1066.99, 1279.92, 1066.99, 1279.45, 1166.12, 1267.47, 1165.64, 1267.47, 1177.14, 1179.84, 1177.14, 1179.36, 1165.64 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="bottles_1" type="StaticBody2D" parent="scene_two" index="10"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="Sprite" type="Sprite" parent="scene_two/bottles_1" index="0"]
+
+position = Vector2( 376.02, 1140.09 )
+scale = Vector2( 0.542253, 0.542253 )
+texture = ExtResource( 8 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="scene_two/bottles_1" index="1"]
+
+build_mode = 0
+polygon = PoolVector2Array( 273.488, 1174.65, 274.348, 1129.91, 286.393, 1106.68, 296.717, 1106.68, 343.176, 1105.82, 378.45, 1117.01, 455.881, 1138.52, 476.529, 1150.56, 476.529, 1161.75, 476.529, 1175.51 )
+
+[node name="Enemy_arrow" type="KinematicBody2D" parent="scene_two" index="11"]
+
+position = Vector2( 681.941, 921.414 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 11 )
+
+[node name="animations" type="AnimatedSprite" parent="scene_two/Enemy_arrow" index="0"]
+
+scale = Vector2( 0.11923, 0.11923 )
+frames = SubResource( 4 )
+animation = "idle"
+_sections_unfolded = [ "Transform" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="arrows" type="Node" parent="scene_two/Enemy_arrow" index="1"]
+
+[node name="shooter_timer" type="Timer" parent="scene_two/Enemy_arrow" index="2"]
+
+process_mode = 1
+wait_time = 2.5
+one_shot = true
+autostart = false
+
+[node name="arrow_point" type="Position2D" parent="scene_two/Enemy_arrow" index="3"]
+
+position = Vector2( 79.278, 38.0795 )
+
+[node name="scene_three" parent="." index="3" instance=ExtResource( 17 )]
 
 [node name="sheet_1" type="StaticBody2D" parent="." index="4"]
 
@@ -121,11 +280,11 @@ constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
 friction = 1.0
 bounce = 0.0
-script = ExtResource( 7 )
+script = ExtResource( 18 )
 
 [node name="sprite" type="Sprite" parent="sheet_1" index="0"]
 
-texture = ExtResource( 8 )
+texture = ExtResource( 19 )
 _sections_unfolded = [ "Transform" ]
 __meta__ = {
 "_edit_lock_": true
@@ -141,7 +300,8 @@ __meta__ = {
 
 [node name="sheet_2" type="StaticBody2D" parent="." index="5"]
 
-position = Vector2( 1522.95, 1714.99 )
+editor/display_folded = true
+position = Vector2( 1527.64, 1725.11 )
 scale = Vector2( 0.333448, 0.333448 )
 input_pickable = false
 collision_layer = 1
@@ -150,63 +310,68 @@ constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
 friction = 1.0
 bounce = 0.0
-script = ExtResource( 9 )
+script = ExtResource( 20 )
 
 [node name="sprite" type="Sprite" parent="sheet_2" index="0"]
 
-texture = ExtResource( 8 )
+texture = ExtResource( 19 )
 _sections_unfolded = [ "Transform" ]
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="collision" type="CollisionPolygon2D" parent="sheet_2" index="1"]
+[node name="collision_2" type="CollisionPolygon2D" parent="sheet_2" index="1"]
 
 build_mode = 0
 polygon = PoolVector2Array( -54.5889, 41.9768, -54.5889, -69.4426, -45.7144, -69.4426, -45.2217, -80.2886, 54.8589, -80.7817, 55.8447, -70.9214, 64.2256, -71.4143, 65.7046, -62.0474, 74.5791, -61.0613, 75.0718, -40.355, 66.1978, -39.8621, 65.7046, -30.002, 54.3657, -29.509, 54.3657, 71.0642, 45.4912, 71.0642, 44.9985, 80.9243, -65.4346, 80.4314, -65.4346, 71.0642, -75.7881, 70.5713, -75.2949, 49.3718, -64.4487, 49.865, -64.9419, 40.9907 )
-__meta__ = {
-"_edit_lock_": true
-}
 
-[node name="Enemy" parent="." index="6" instance=ExtResource( 10 )]
+[node name="initial_position" type="Position2D" parent="sheet_2" index="2"]
+
+position = Vector2( 4.0127, 0 )
+
+[node name="Enemy" parent="." index="6" instance=ExtResource( 21 )]
 
 editor/display_folded = true
-position = Vector2( 417.273, 1074.33 )
+position = Vector2( 937.305, 475.887 )
 scale = Vector2( 0.11923, 0.11923 )
 _sections_unfolded = [ "Transform", "collision" ]
 
 [node name="initial_position" type="Position2D" parent="Enemy" index="3"]
 
-position = Vector2( -132.501, 325.071 )
+position = Vector2( -230.376, 200.091 )
 scale = Vector2( 8.38715, 8.38715 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="final_position" type="Position2D" parent="Enemy" index="4"]
 
-position = Vector2( 4760.71, 295.308 )
+position = Vector2( 1992.14, 215.221 )
 scale = Vector2( 10.906, 9.53804 )
+_sections_unfolded = [ "Transform" ]
 
-[node name="Barman" parent="." index="7" instance=ExtResource( 11 )]
+[node name="head" type="Position2D" parent="Enemy" index="5"]
+
+position = Vector2( -102.356, -458.257 )
+scale = Vector2( 9.1901, 3.94879 )
+
+[node name="Barman" parent="." index="7" instance=ExtResource( 22 )]
 
 position = Vector2( 1097.75, 1500.45 )
 scale = Vector2( 0.11923, 0.11923 )
 _sections_unfolded = [ "Transform", "collision" ]
 
-[node name="Fight" parent="." index="8" instance=ExtResource( 12 )]
+[node name="Fight" parent="." index="8" instance=ExtResource( 23 )]
 
-position = Vector2( 1779.32, 1581.59 )
-scale = Vector2( 0.227994, 0.227994 )
+position = Vector2( 1789.65, 1610.54 )
+scale = Vector2( 0.196273, 0.196273 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="Bard" parent="." index="9" instance=ExtResource( 13 )]
+[node name="Bard" parent="." index="9" instance=ExtResource( 24 )]
 
-position = Vector2( 2029.74, 790.687 )
+position = Vector2( 2030.48, 791.509 )
 scale = Vector2( 0.11527, 0.11527 )
 
 [node name="Camera2D" type="Camera2D" parent="Bard" index="9"]
 
-position = Vector2( 512.269, 302.222 )
-scale = Vector2( 0.582236, 0.587582 )
 anchor_mode = 1
 rotating = false
 current = true
@@ -214,10 +379,10 @@ zoom = Vector2( 2, 2 )
 limit_left = 0
 limit_top = 0
 limit_right = 2133
-limit_bottom = 600
-limit_smoothed = false
+limit_bottom = 1200
+limit_smoothed = true
 drag_margin_h_enabled = true
-drag_margin_v_enabled = false
+drag_margin_v_enabled = true
 smoothing_enabled = true
 smoothing_speed = 5.0
 offset_v = 0.0
@@ -230,5 +395,7 @@ editor_draw_screen = false
 editor_draw_limits = false
 editor_draw_drag_margin = true
 _sections_unfolded = [ "Drag Margin", "Editor", "Limit", "Smoothing", "Transform" ]
+
+[connection signal="timeout" from="scene_two/Enemy_arrow/shooter_timer" to="scene_two/Enemy_arrow" method="_on_shooter_timer_timeout"]
 
 

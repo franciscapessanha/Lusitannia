@@ -1,0 +1,93 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Scripts/Mug.gd" type="Script" id=1]
+[ext_resource path="res://Images/Assets_tavern/CanecaBreak/canecabreak-01.png" type="Texture" id=2]
+[ext_resource path="res://Images/Assets_tavern/CanecaBreak/canecabreak-02.png" type="Texture" id=3]
+[ext_resource path="res://Images/Assets_tavern/CanecaBreak/canecabreak-03.png" type="Texture" id=4]
+[ext_resource path="res://Images/Assets_tavern/CanecaBreak/canecabreak-04.png" type="Texture" id=5]
+[ext_resource path="res://Images/Assets_tavern/Caneca/caneca-01.png" type="Texture" id=6]
+[ext_resource path="res://Images/Assets_tavern/Caneca/caneca-02.png" type="Texture" id=7]
+[ext_resource path="res://Images/Assets_tavern/Caneca/caneca-03.png" type="Texture" id=8]
+[ext_resource path="res://Images/Assets_tavern/Caneca/caneca-04.png" type="Texture" id=9]
+[ext_resource path="res://Fonts/cyrillic_pixel-7.ttf" type="DynamicFontData" id=10]
+
+[sub_resource type="SpriteFrames" id=1]
+
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ],
+"loop": false,
+"name": "break",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "on_air",
+"speed": 5.0
+} ]
+
+[sub_resource type="DynamicFont" id=2]
+
+size = 40
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 10 )
+_sections_unfolded = [ "Font", "Settings" ]
+
+[node name="RigidBody2D" type="RigidBody2D"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+mode = 0
+mass = 1.0
+friction = 1.0
+bounce = 0.0
+gravity_scale = 1.0
+custom_integrator = true
+continuous_cd = 0
+contacts_reported = 0
+contact_monitor = false
+sleeping = false
+can_sleep = true
+linear_velocity = Vector2( 0, 0 )
+linear_damp = -1.0
+angular_velocity = 0.0
+angular_damp = -1.0
+script = ExtResource( 1 )
+_sections_unfolded = [ "Transform", "Visibility" ]
+
+[node name="animations" type="AnimatedSprite" parent="." index="0"]
+
+position = Vector2( 2.5142, -0.0730858 )
+scale = Vector2( 0.554243, 0.554243 )
+frames = SubResource( 1 )
+animation = "on_air"
+_sections_unfolded = [ "Transform", "Z Index" ]
+
+[node name="Label" type="Label" parent="." index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -17.0
+margin_top = -23.0
+margin_right = 13.0
+margin_bottom = 35.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+align = 1
+valign = 1
+uppercase = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Margin", "custom_colors", "custom_fonts" ]
+
+

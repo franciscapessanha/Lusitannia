@@ -9,8 +9,7 @@ func _ready():
 	pass
 
 func _process(delta):
-	print(door_pos.distance_to(bard.global_position))
 	if door_pos.distance_to(bard.global_position) < 45:
 		bard.global_position = new_pos
-		get_parent().get_node("Bard/Camera2D").limit_bottom += get_parent().get_node("Bard/Camera2D").limit_bottom/2 
+		get_parent().get_node("Bard/Camera2D").limit_bottom += get_parent().get_node("Bard/Camera2D").limit_bottom/2
 	pass
