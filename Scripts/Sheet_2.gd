@@ -10,8 +10,8 @@ var ground_truth = "ASDJKL"
 func collect_melody():
 	collision.disabled = true
 	sprite.hide()
-	print(get_node("initial_position").global_position)
-	return get_node("initial_position").global_position
+	#print("initial_position",get_node("initial_position").global_position)
+	#return get_node("initial_position").global_position
 
 func generate_next_mug():
 	if i < len(sequency):
@@ -23,8 +23,10 @@ func generate_next_mug():
 		i = 0
 		if try == ground_truth:
 			get_parent().get_node("Fight").change_animation("cheers")
+			get_parent().get_node("Barman").change_animation("happy")
 			get_parent().get_node("Fight/fight_collision").disabled = true
 			get_parent().get_node("Bard").change_mode("exploring")
+			get_node("final").play()
 		else:
 			
 			var new_mug = mug.instance()

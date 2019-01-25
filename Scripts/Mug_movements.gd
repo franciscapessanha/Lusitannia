@@ -33,7 +33,7 @@ func _process(delta):
 		new_mug.get_node("animations").play("break")
 		
 	else:
-		follow.set_offset(follow.get_offset() + 600*delta)
+		follow.set_offset(follow.get_offset() + 750*delta)
 
 func _on_mug_break_timeout():
 	get_parent().generate_next_mug()

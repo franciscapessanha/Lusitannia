@@ -196,7 +196,7 @@ autostart = false
 
 [node name="initial_position" type="Position2D" parent="." index="7"]
 
-position = Vector2( 233.351, 1456.91 )
+position = Vector2( 226.355, 1452.87 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="step_0" type="Position2D" parent="." index="8"]

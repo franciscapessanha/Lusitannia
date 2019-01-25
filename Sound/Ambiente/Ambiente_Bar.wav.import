@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Ambiente_Bar.wav-7309a78ad8dd0c286cb7c5da1cd391f1.sample"
+
+[deps]
+
+source_file="res://Sound/Ambiente/Ambiente_Bar.wav"
+dest_files=[ "res://.import/Ambiente_Bar.wav-7309a78ad8dd0c286cb7c5da1cd391f1.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

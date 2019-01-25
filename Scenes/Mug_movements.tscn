@@ -6,35 +6,35 @@
 
 bake_interval = 5.0
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 408.854, -480.592, 0, 0, 0, 0, 229.3, -655.658, 0, 0, 0, 0, 99.123, -714.013, 0, 0, 0, 0, -17.5879, -691.569, 0, 0, 0, 0, -161.231, -610.769, 0, 0, 0, 0, -242.031, -489.569, 5.11678, -23.391, -21.9291, -2.92388, -277.942, -408.77, 0, 0, 0, 0, -304.875, -372.859 )
+"points": PoolVector2Array( 0, 0, 0, 0, 408.854, -480.592, 186.028, -15.8095, -193.022, 8.88606, -17.5879, -691.569, 0, 0, 0, 0, -237.039, -1010.49 )
 }
 
 [sub_resource type="Curve2D" id=2]
 
 bake_interval = 5.0
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 856.835, -641.307, 0, 0, 0, 0, 982.18, -829.323, 0, 0, 0, 0, 1201.53, -946.833, 0, 0, 0, 0, 1483.56, -946.833, 0, 0, 0, 0, 1648.07, -860.659, 0, 0, 0, 0, 1710.74, -750.983, 0, 0, 0, 0, 1712.5, -740.079 )
+"points": PoolVector2Array( 0, 0, 0, 0, 856.835, -641.307, -118.032, -26.6827, 39.8671, -5.65045, 1483.56, -946.833, 0, 0, 0, 0, 1712.5, -740.079 )
 }
 
 [sub_resource type="Curve2D" id=3]
 
 bake_interval = 5.0
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 757.898, -673.514, 0, 0, 0, 0, 751.042, -1043.74, 0, 0, 0, 0, 747.614, -1201.42, 0, 0, 0, 0, 740.758, -1314.55, 0, 0, 0, 0, 740.758, -1417.39, 0, 0, 0, 0, 740.758, -1503.09, 0, 0, 0, 0, 746.159, -1510.62, 0, 0, 0, 0, 746.954, -1520.16, 0, 0, 0, 0, 745.364, -1533.67, 0, 0, 0, 0, 742.185, -1542.41 )
+"points": PoolVector2Array( 0, 0, 0, 0, 741.937, -615.539, 0, 0, 0, 0, 740.758, -1417.39 )
 }
 
 [sub_resource type="Curve2D" id=4]
 
 bake_interval = 5.0
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 465.939, -571.763, 0, 0, 0, 0, 152.888, -783.675, 0, 0, 0, 0, -213.142, -846.285, 0, 0, 0, 0, -463.583, -889.631, 0, 0, 0, 0, -612.885, -932.977 )
+"points": PoolVector2Array( 0, 0, 0, 0, 465.939, -571.763, 90.0449, 114.444, -94.1114, -110.959, 152.888, -783.675, 0, 0, 0, 0, -612.885, -932.977 )
 }
 
 [sub_resource type="Curve2D" id=5]
 
 bake_interval = 5.0
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 337.861, -372.446, 0, 0, 0, 0, 245.003, -418.875, 0, 0, 0, 0, 82.501, -411.137, 0, 0, 0, 0, 16.7266, -364.708 )
+"points": PoolVector2Array(  )
 }
 
 [node name="mug_movements" type="Node"]
@@ -44,14 +44,14 @@ script = ExtResource( 1 )
 [node name="path_0" type="Path2D" parent="." index="0"]
 
 self_modulate = Color( 0.5, 0.6, 1, 0.7 )
-position = Vector2( 1527.64, 1725.11 )
-scale = Vector2( 0.333448, 0.333448 )
+position = Vector2( 1529.63, 1737.21 )
+scale = Vector2( 0.333448, 0.380144 )
 curve = SubResource( 1 )
 
 [node name="path_1" type="Path2D" parent="." index="1"]
 
 self_modulate = Color( 0.5, 0.6, 1, 0.7 )
-position = Vector2( 1528.98, 1725.11 )
+position = Vector2( 1528.98, 1725.65 )
 scale = Vector2( 0.333448, 0.333448 )
 curve = SubResource( 2 )
 
@@ -69,19 +69,17 @@ position = Vector2( 1527.64, 1725.11 )
 scale = Vector2( 0.333448, 0.333448 )
 curve = SubResource( 4 )
 
-[node name="path_hit" type="Path2D" parent="." index="4"]
-
-self_modulate = Color( 0.5, 0.6, 1, 0.7 )
-position = Vector2( 1527.64, 1725.11 )
-scale = Vector2( 0.333448, 0.333448 )
-curve = SubResource( 5 )
-
-[node name="mug_break" type="Timer" parent="." index="5"]
+[node name="mug_break" type="Timer" parent="." index="4"]
 
 process_mode = 0
-wait_time = 0.03
+wait_time = 0.01
 one_shot = true
 autostart = false
+
+[node name="path_4" type="Path2D" parent="." index="5"]
+
+self_modulate = Color( 0.5, 0.6, 1, 0.7 )
+curve = SubResource( 5 )
 
 [connection signal="timeout" from="mug_break" to="." method="_on_mug_break_timeout"]
 

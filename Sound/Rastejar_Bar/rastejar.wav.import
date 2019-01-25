@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/rastejar.wav-1e0b731cdee9422e24b5402048b4b0db.sample"
+
+[deps]
+
+source_file="res://Sound/Rastejar_Bar/rastejar.wav"
+dest_files=[ "res://.import/rastejar.wav-1e0b731cdee9422e24b5402048b4b0db.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

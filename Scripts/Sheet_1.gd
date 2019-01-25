@@ -25,6 +25,7 @@ var wait = false
 var time_start = 0
 var time_now = 0
 var time_elapsed = []
+var offset = 200
 func _ready():
 	set_process(false)
 
@@ -84,19 +85,20 @@ func _process(delta):
 	
 	elif mode == "play" and len(time_elapsed) == 3:
 				
-		if time_elapsed[0] > times[0]*1000 - 200 and time_elapsed[0] < times[0]*1000 + 200:
-			if time_elapsed[1] > times[1]*1000 - 200 and time_elapsed[1] < times[1]*1000 + 200:
-				if time_elapsed[2] > times[2]*1000 - 200 and time_elapsed[2] < times[1]*1000 + 200:		
+		if time_elapsed[0] > times[0]*1000 - offset and time_elapsed[0] < times[0]*1000 + offset:
+			if time_elapsed[1] > times[1]*1000 - offset and time_elapsed[1] < times[1]*1000 +  offset:
+				if time_elapsed[2] > times[2]*1000 - offset and time_elapsed[2] < times[1]*1000 + offset:		
 					for i in range(len(stairs)):
 						stairs[i].get_node("collision").disabled = false
 						stairs[i].get_node("sprite").play("on")
 		else:
 			for i in range(len(stairs)):
-				stairs[i].get_node("collision").disabled = false
-				stairs[i].get_node("sprite").play("on")
+				stairs[i].get_node("collision").disabled = true
+				stairs[i].get_node("sprite").play("off")
 		
 		get_parent().get_parent().get_parent().get_node("Bard").jump_stairs()
 		set_process(false)
+		get_parent().get_parent().get_node("ritmo_1").play()
 		"""
 		
 	elif mode == "play" and i == 4:
