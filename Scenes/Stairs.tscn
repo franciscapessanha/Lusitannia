@@ -204,13 +204,13 @@ autostart = false
 
 [node name="initial_position" type="Position2D" parent="." index="7"]
 
+visible = false
 position = Vector2( 1870.18, 855.711 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="step_0" type="Position2D" parent="." index="8"]
 
-visible = false
-position = Vector2( 1716.65, 876.131 )
+position = Vector2( 1730.9, 876.131 )
 
 [node name="step_1" type="Position2D" parent="." index="9"]
 

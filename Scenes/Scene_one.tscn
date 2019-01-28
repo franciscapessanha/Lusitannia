@@ -3,7 +3,7 @@
 [ext_resource path="res://Scripts/Scene_one.gd" type="Script" id=1]
 [ext_resource path="res://Images/Tavern/Taverna_01.png" type="Texture" id=2]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=4]
 
 custom_solver_bias = 0.0
 extents = Vector2( 2263.63, 10 )
@@ -52,7 +52,7 @@ polygon = PoolVector2Array( 1589.6, 575.747, 1589.6, 323.034, 1732.57, 323.034, 
 
 position = Vector2( 1065.8, 587.877 )
 scale = Vector2( 0.470872, 1.21338 )
-shape = SubResource( 1 )
+shape = SubResource( 4 )
 
 [node name="door_one_0" type="Position2D" parent="." index="6"]
 

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/note_5.wav-1821d952395d172fe0f84cfa5fa9d082.sample"
+
+[deps]
+
+source_file="res://Sound/Challenges/2_Melodic/note_5.wav"
+dest_files=[ "res://.import/note_5.wav-1821d952395d172fe0f84cfa5fa9d082.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

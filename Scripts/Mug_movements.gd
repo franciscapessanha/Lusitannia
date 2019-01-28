@@ -2,7 +2,7 @@ extends Node
 
 onready var paths = [get_node("path_0"), get_node("path_1"), get_node("path_2"),
 get_node("path_3")]
-onready var path_hit = get_node("path_hit")
+#onready var path_hit = get_node("path_hit")
 
 onready var mug = preload("res://Scenes/Mug.tscn")
 var path
@@ -17,7 +17,7 @@ func _ready():
 	path = paths[randi() % paths.size()]
 	new_mug = mug.instance()
 	follow = PathFollow2D.new()
-	follow.set_rotate(false)
+	follow.set_rotate(true)
 	path.add_child(follow)
 	follow.add_child(new_mug)
 
@@ -33,7 +33,7 @@ func _process(delta):
 		new_mug.get_node("animations").play("break")
 		
 	else:
-		follow.set_offset(follow.get_offset() + 750*delta)
+		follow.set_offset(follow.get_offset() + 600*delta)
 
 func _on_mug_break_timeout():
 	get_parent().generate_next_mug()

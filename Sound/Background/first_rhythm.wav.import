@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/first_rhythm.wav-cfd438ee7b706cfa049b4e3812db88e5.sample"
+
+[deps]
+
+source_file="res://Sound/Background/first_rhythm.wav"
+dest_files=[ "res://.import/first_rhythm.wav-cfd438ee7b706cfa049b4e3812db88e5.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

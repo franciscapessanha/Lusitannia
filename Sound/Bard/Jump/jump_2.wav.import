@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/jump_2.wav-30628c1e0c69ee92b6064d5680abf83b.sample"
+
+[deps]
+
+source_file="res://Sound/Bard/Jump/jump_2.wav"
+dest_files=[ "res://.import/jump_2.wav-30628c1e0c69ee92b6064d5680abf83b.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

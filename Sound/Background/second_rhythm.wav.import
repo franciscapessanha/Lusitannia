@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/second_rhythm.wav-77fbfe104b7df9e6fe18e50047986efb.sample"
+
+[deps]
+
+source_file="res://Sound/Background/second_rhythm.wav"
+dest_files=[ "res://.import/second_rhythm.wav-77fbfe104b7df9e6fe18e50047986efb.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

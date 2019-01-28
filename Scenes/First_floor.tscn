@@ -1,0 +1,208 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Scripts/First_floor/first_floor.gd" type="Script" id=1]
+[ext_resource path="res://Images/Tavern/Taverna_01.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/Global/bottles.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/Enemy.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scripts/First_floor/box.gd" type="Script" id=5]
+[ext_resource path="res://Images/Assets_tavern/caixa.png" type="Texture" id=6]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 198.622, 67.7725 )
+
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 57.3784, 57.5523 )
+
+[sub_resource type="RectangleShape2D" id=3]
+
+custom_solver_bias = 0.0
+extents = Vector2( 2337.2, 9.67148 )
+
+[sub_resource type="RectangleShape2D" id=4]
+
+custom_solver_bias = 0.0
+extents = Vector2( 10, 294.871 )
+
+[node name="first_floor" type="Node2D"]
+
+script = ExtResource( 1 )
+
+[node name="background" type="Sprite" parent="." index="0"]
+
+scale = Vector2( 0.55, 0.55 )
+texture = ExtResource( 2 )
+centered = false
+_sections_unfolded = [ "Offset", "Transform" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="bed" type="StaticBody2D" parent="." index="1"]
+
+editor/display_folded = true
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="collision" type="CollisionPolygon2D" parent="bed" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( 34.0032, 549.929, 80.4694, 550.027, 80.499, 561.876, 91.7299, 561.876, 91.7299, 584.929, 298.023, 584.338, 298.023, 596.16, 45.6243, 596.16, 45.6243, 585.52, 34.2485, 585.698 )
+
+[node name="bottles" type="StaticBody2D" parent="." index="2"]
+
+editor/display_folded = true
+scale = Vector2( 0.55, 0.55 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+script = ExtResource( 3 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="collision" type="CollisionShape2D" parent="bottles" index="0"]
+
+position = Vector2( 1136.71, 1015.66 )
+scale = Vector2( 0.986491, 1 )
+shape = SubResource( 1 )
+
+[node name="barrils" type="StaticBody2D" parent="." index="3"]
+
+editor/display_folded = true
+scale = Vector2( 0.55, 0.55 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+_sections_unfolded = [ "Transform" ]
+
+[node name="collision_0" type="CollisionPolygon2D" parent="barrils" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( 541.929, 874.935, 562.283, 874.97, 562.369, 853.909, 728.738, 854.029, 728.738, 875.005, 749.799, 875.005, 749.972, 916.696, 770.395, 916.61, 770.395, 896.239, 916.647, 896.09, 916.586, 916.99, 937.41, 916.988, 937.694, 1082.18, 542.588, 1082.82 )
+
+[node name="collision_1" type="CollisionPolygon2D" parent="barrils" index="1"]
+
+build_mode = 0
+polygon = PoolVector2Array( 1332.84, 875.295, 1353.62, 875.295, 1353.25, 855.182, 1520.82, 855.182, 1520.63, 874.903, 1542.2, 874.903, 1541.49, 1083.8, 1332.84, 1083.4 )
+
+[node name="enemy" parent="." index="4" instance=ExtResource( 4 )]
+
+position = Vector2( 972.644, 496.876 )
+scale = Vector2( 0.12, 0.12 )
+_sections_unfolded = [ "Transform", "collision" ]
+
+[node name="initial_position" type="Position2D" parent="enemy" index="3"]
+
+position = Vector2( -102.633, 296.822 )
+scale = Vector2( 8.38715, 8.38715 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="final_position" type="Position2D" parent="enemy" index="4"]
+
+position = Vector2( 1951.4, 368.007 )
+scale = Vector2( 10.906, 9.53804 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="head" type="Position2D" parent="enemy" index="5"]
+
+position = Vector2( -102.356, -458.257 )
+scale = Vector2( 9.1901, 3.94879 )
+
+[node name="box" type="KinematicBody2D" parent="." index="5"]
+
+editor/display_folded = true
+position = Vector2( 1353.41, 538.739 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.001
+script = ExtResource( 5 )
+_sections_unfolded = [ "Transform", "collision" ]
+
+[node name="sprite" type="Sprite" parent="box" index="0"]
+
+scale = Vector2( 0.55, 0.55 )
+texture = ExtResource( 6 )
+_sections_unfolded = [ "Transform" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="collision" type="CollisionShape2D" parent="box" index="1"]
+
+shape = SubResource( 2 )
+_sections_unfolded = [ "Transform" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="boxes" type="StaticBody2D" parent="." index="6"]
+
+editor/display_folded = true
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="collision" type="CollisionPolygon2D" parent="boxes" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( 1638.77, 597.021, 1638.77, 333.706, 1786.57, 333.706, 1786.57, 482.351, 1832.43, 482.351, 1832.43, 539.261, 1890.19, 539.261, 1890.02, 598.04 )
+
+[node name="door_one" type="Position2D" parent="." index="7"]
+
+position = Vector2( 2040.63, 522.682 )
+scale = Vector2( 1.62924, 1.50841 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="floor_and_walls" type="StaticBody2D" parent="." index="8"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="bottom_collision" type="CollisionShape2D" parent="floor_and_walls" index="0"]
+
+position = Vector2( 1104.3, 607.762 )
+scale = Vector2( 0.470872, 1.21338 )
+shape = SubResource( 3 )
+
+[node name="top_collision" type="CollisionShape2D" parent="floor_and_walls" index="1"]
+
+position = Vector2( 1102.09, 12.1594 )
+scale = Vector2( 0.470872, 1.21338 )
+shape = SubResource( 3 )
+
+[node name="left_collision" type="CollisionShape2D" parent="floor_and_walls" index="2"]
+
+position = Vector2( 10.4542, 318.853 )
+shape = SubResource( 4 )
+
+[node name="right_collision" type="CollisionShape2D" parent="floor_and_walls" index="3"]
+
+position = Vector2( 2186.67, 315.368 )
+shape = SubResource( 4 )
+
+

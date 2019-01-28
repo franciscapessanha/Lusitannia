@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/note_2.wav-c74d8f0f52d43d8aec9685973aa1856c.sample"
+
+[deps]
+
+source_file="res://Sound/Challenges/1_Rhythm/note_2.wav"
+dest_files=[ "res://.import/note_2.wav-c74d8f0f52d43d8aec9685973aa1856c.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

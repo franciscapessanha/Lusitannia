@@ -1,6 +1,6 @@
 extends KinematicBody2D
 """
-Variables initialization
+Global Variables
 =======================================================
 """
 onready var animations = get_node("animations")
@@ -14,7 +14,6 @@ onready var steps_sounds = get_node("steps/steps")
 onready var jump_sounds = [get_node("jump/jump_0"),get_node("jump/jump_1"), get_node("jump/jump_2"),get_node("jump/jump_3")]
 onready var crawl_sounds = get_node("crawl/crawl")
 onready var pulling_sounds = get_node("pull_push/pulling")
-
 var steps_sound_on = false
 var crawl_sound_on = false
 var pulling_sound_on = false
@@ -30,7 +29,7 @@ onready var run = get_node("run_collision")
 onready var actions = [crawl, idle, play, jump, pull, push, run]
 onready var action = "idle"
 onready var action_shape = idle
-onready var next_step
+onready var first_step
 
 #Motion parameters
 var velocity = Vector2(0,0)
@@ -38,60 +37,78 @@ var run_speed = 200
 var gravity = 1125
 var jump_speed = -470
 var crawling = false
-var steps
-
 
 #Moving box parameters
 var pulling = false
-onready var box = get_parent().get_node("scene_one/Box")
-onready var box_position = get_parent().get_node("scene_one/Box/box_position").global_position
+onready var box = get_parent().get_node("first_floor/box")
+onready var box_position = box.global_position
 var found_box = false
 onready var moving_right = true
-var found_initial_pos = false
 
 #Game mode - general parameters
-onready var game_position = Vector2() #position where to start the game mode
 var sheet
 
-#Rythm game mode parameters
+#Rhythm game mode parameters
 var s = 0
 var jumping_steps = false
 onready var jump_stairs_timer = get_node("jump_stairs_timer")
-onready var melody_timer = get_node("melody_timer")
 
 #Melody game mode parameters
-var first_time = true
+onready var melody_timer = get_node("melody_timer")
 
 #"God" mode
-onready var god_mode = get_node("god_mode") 
 onready var deadly_object = []
 var type 
-
-onready var shooting = get_parent().get_node("start_shooting").global_position
+onready var checkpoints = [get_parent().get_node("checkpoints/first").global_position, 
+get_parent().get_node("checkpoints/second").global_position, 
+get_parent().get_node("checkpoints/third").global_position]
+onready var start = 0 
+#Enemy with arrow - position control
+onready var shooting = get_parent().get_node("second_floor/start_shooting").global_position
 onready var arrow_shooting = false
-
-#===================================================================
+"""
+Ready Function
+===================================================================
+"""
 func _ready():	
 	animations.play(action)
 	handle_collision_shapes(action_shape)
 	set_physics_process(true)
 	pass
-#===================================================================
+"""
+Handle collision shapes
+===================================================================
+Activate/disable the collision shapes according to the current action.
+
+Arguments:
+	* action: current action (walk or attack)
+"""
 func handle_collision_shapes(action):
 	for i in range(len(actions)):
 		if action == actions[i]:
 			actions[i].disabled = false
 		else:
 			actions[i].disabled = true
-#===================================================================
+"""
+Stop all sounds
+===================================================================
+Will stop all sounds at the beginning of a challenge.
+"""
 func stop_all_sounds():
 	steps_sounds.stop()
 	crawl_sounds.stop()
 	pulling_sounds.stop()	
 	for i in range(len(jump_sounds)):
 		jump_sounds[i].stop()
+	get_parent().get_node("sounds/background").stop()
+	get_parent().get_node("sounds/0_rhythm").stop()
+	get_parent().get_node("sounds/1_rhythm").stop()
+	get_parent().get_node("sounds/2_melody").stop()
 
-
+"""
+Get Input
+===================================================================
+"""
 func get_input():
 	var right = Input.is_action_pressed("ui_right")
 	var left = Input.is_action_pressed("ui_left")
@@ -137,7 +154,6 @@ func get_input():
 				if !crawl_sound_on:
 					crawl_sounds.play() 
 					crawl_sound_on = true
-
 		elif left:
 			velocity.x -= run_speed
 			if !crawling and !pulling:
@@ -165,7 +181,6 @@ func get_input():
 			action = "crawl"
 			action_shape = crawl
 			crawling = true
-			#crawl_sounds.play() 
 		elif select and found_box:
 			if !pulling:
 				pulling = true
@@ -185,185 +200,203 @@ func get_input():
 			else:
 				crawl_sounds.stop()
 				crawl_sound_on = false
-#===================================================================
+"""
+Normal physics
+===================================================================
+Physics function when on exploring mode.
+
+Arguments:
+	* delta
+"""
 func normal_physics(delta):
 	velocity = move_and_slide(velocity, Vector2(0,-1))
 	var collision = move_and_collide(velocity * delta)	
 	if collision:
-		if collision.collider.has_method("collect_rythm"):
-			game_position = collision.collider.collect_rythm()
+		if collision.collider.has_method("collect_rhythm"):
+			collision.collider.collect_rhythm()
 			sheet = collision.collider
-			steps = sheet.get_steps()
-			next_step = steps[s]
-			rythm_game_mode()
-			found_initial_pos = true
+			first_step = sheet.get_first_step()
+			rhythm_game_mode()
 			stop_all_sounds()
-			print("game position", game_position)
 		elif collision.collider.has_method("collect_melody"):
-			#game_position = collision.collider.collect_melody()
 			collision.collider.collect_melody()
 			mode = "melody"
 			sheet = collision.collider
-			found_initial_pos = true
 			stop_all_sounds()
-		if collision.collider.has_method("deadly"):
+		elif collision.collider.has_method("deadly"):
 			deadly_object = collision.collider
 			type = "object"
 			lost_life(type, [])
 			stop_all_sounds()
 		if collision.collider.has_method("collision_with_enemy"):
 			collision.collider.collision_with_enemy(feet.global_position)
-			
+	
+	#When pushing/pulling a object
 	if pulling:
 		box.move(velocity, delta, global_position)
-	
 	if abs(box_position.x - global_position.x) < 200:
 		found_box = true
 	else:
 		found_box = false
-#===================================================================
-func rythm_physics(delta):
-	velocity = move_and_slide(velocity, Vector2(0,-1))
-	var collision = move_and_collide(velocity * delta)
-	if !found_initial_pos: #dirigir-se até à posição inicial
-		if global_position.x > 0.98 * game_position.x and global_position.x < 1.02 * game_position.x :
-			action = "play"
-			action_shape = play
-			sheet.set_process(true)	
-			found_initial_pos = true
-		else:
-			action = "run"
-			action_shape = run
-			var direction = Vector2()
-			direction.x = (game_position.x - global_position.x)
-			direction.y = 0
-			print("direction", direction)
-			velocity = move_and_slide(direction.normalized() * 100)
+"""
+Rhythm physics
+===================================================================
+Physics function when on rhytmic mode.
+
+Arguments:
+	* delta
+"""
+func rhythm_physics(delta):
+	if !jumping_steps or !read_input:
+		action = "play"
+		action_shape = play
+		sheet.set_process(true)	
 	elif jumping_steps and read_input:
 		var direction = Vector2()
-		direction = (next_step - global_position)
-		velocity = move_and_slide(Vector2(direction.x * 2, direction.y * 0.1))
-	else:
-		velocity = move_and_slide(velocity, Vector2(0,-1))
-		collision = move_and_collide(velocity * delta)
-		
-	if Input.is_action_just_pressed("ui_cancel"):
-		read_input = true
-		action = "idle"
-		action_shape = idle
-#===================================================================	
+		direction = (first_step - global_position)
+		velocity = move_and_slide(Vector2(direction.x, direction.y * 0.1))
+"""
+Melody physics
+===================================================================
+Physics function when on melodic mode.
+Arguments:
+	* delta
+"""	
 func melody_physics(delta):
 	velocity = move_and_slide(velocity, Vector2(0,-1))
 	var collision = move_and_collide(velocity * delta)	
-	if !found_initial_pos: #dirigir-se até à posição inicial
-		if global_position.x > 0.98 * game_position.x and global_position.x < 1.02 * game_position.x :
-			action = "play"
-			action_shape = play
-			melody_timer.start()
-			found_initial_pos = true
-		else:
-			action = "run"
-			action_shape = run
-			var direction = Vector2()
-			direction.x = (game_position.x - global_position.x)
-			direction.y = 0
-			velocity = move_and_slide(direction.normalized() * 10)
-	elif first_time:
-		velocity = Vector2(0,0)
-		action = "play"
-		action_shape = play
-		melody_timer.start()
-		first_time = false
-		
-#===================================================================	
+	action = "play"
+	action_shape = play
+	melody_timer.start()
+
+"""
+Physics process function
+===================================================================
+"""
 func _physics_process(delta):
+	print("mode ", mode)
 	velocity.y += gravity * delta
-	if !arrow_shooting and abs(global_position.x - shooting.x) < 50:
+	if !arrow_shooting and abs(global_position.x - shooting.x) < 100:
 		if abs(global_position.y - shooting.y) < 400:
-			get_parent().get_node("scene_two/Enemy_arrow").start_shooting()
-		arrow_shooting = true
+			get_parent().get_node("second_floor/enemy_arrow").start_shooting()
+			arrow_shooting  = true
 	if !jumping_steps:
 		velocity.x = 0
 	if read_input:
 		get_input()
 	if mode == "exploring":
 		normal_physics(delta)
-	if mode == "rythm":
-		rythm_physics(delta)
+	if mode == "rhythm":
+		rhythm_physics(delta)
 	if mode == "melody":
 		melody_physics(delta)
 	animations.play(action)
 	handle_collision_shapes(action_shape)
-		
-#===================================================================
-func _on_animations_animation_finished():
-	if action == "jump":
-		read_input = true
-#===================================================================
-func _on_jump_timer_timeout():
-	velocity.y = jump_speed
-#===================================================================
-func rythm_game_mode():
-	action = "run"
-	action_shape = run
-	get_node("Camera2D").drag_margin_bottom = 1
-	get_node("Camera2D").drag_margin_top = 0
-	mode = "rythm"
-#===================================================================
-func change_mode(new_mode):
-	mode = new_mode
-	if new_mode == "exploring":
-		action= "idle"
-		action_shape = idle
-		
-#===================================================================
-func _on_jump_stairs_timer_timeout():
-	if s == 4:
-		mode = "exploring"
-		s = 0 
-	else:
-		s += 1
-		next_step = steps[s]
-		#jump_stairs()
-		mode = "exploring"
-#===================================================================
-func _on_melody_timer_timeout():
-	sheet.generate_next_mug()
-#===================================================================
+
+"""
+Lost life
+===================================================================
+"""
 func lost_life(type, enemy_actions):
 	get_parent().get_node("UI").take_life()
-	god_mode.start()
+	read_input = false
 	animations.modulate = Color(1,1,1,0.5)
+	action = "die"
 	if type == "object":
 		deadly_object.get_node("collision").disabled = true
 	if type == "enemy":
 		for i in range(len(enemy_actions)):
 			enemy_actions[i].disabled = true
-#===================================================================
-func _on_god_mode_timeout():
-	animations.modulate = Color(1,1,1,1)
-	if type == "object":
-		deadly_object.get_node("collision").disabled = false
-		deadly_object = []
-#===================================================================
+
+"""
+Change checkpoint
+===================================================================
+"""
+func change_checkpoint():
+	start += 1
+"""
+Jumping stairs
+===================================================================
+"""
 func jump_stairs():
 	action = "jump"	
 	action_shape = jump
 	jump_stairs_timer.start()
 	jump_timer.start()
 	jumping_steps = true
+
+# ********************
+# TIMERS AND UTILITIES
+# ********************
+
+# Animation finished
+# ===================================================================
+
+func _on_animations_animation_finished():
+	if action == "jump":
+		read_input = true
+	if action == "die":
+		read_input = true
+		global_position = checkpoints[start]
+		animations.modulate = Color(1,1,1,1)
+		if start == 1:
+			get_parent().get_node("second_floor/sheet_0").reset_rhythm()
+			get_parent().get_node("second_floor/enemy_arrow").stop_shooting()
+		
+		if start == 2:
+			get_parent().get_node("third_floor/sheet_1").reset_rhythm()
+			get_parent().get_node("third_floor/sheet_2").reset_melody()
+
+# Jump timer
+# ===================================================================
+# Gives time for the bard to go down before jumping
+func _on_jump_timer_timeout():
+	velocity.y = jump_speed
+
+# Rhythmic game mode
+# ===================================================================
+func rhythm_game_mode():
+	action = "play"
+	action_shape = play
+	mode = "rhythm"
+# Change mode
+# ===================================================================
+func change_mode(new_mode):
+	mode = new_mode
+	if new_mode == "exploring":
+		action= "idle"
+		action_shape = idle
+# Jump stairs timer
+# ===================================================================
+func _on_jump_stairs_timer_timeout():
+		jumping_steps = false
+		mode = "exploring"
+# Melody timer
+# ===================================================================
+func _on_melody_timer_timeout():
+	sheet.generate_next_mug()
+
+
+# *************
+# SOUND CONTROL
+# *************
+# It will replay the sound of the action if the action continues and stop it if it doesn't.
+
+# Steps Sound
 #===================================================================
 func _on_steps_finished():
 	if action == "run":
 		steps_sounds.play()
 	else:
 		steps_sound_on = false
+# Crawl Sound
 #===================================================================
 func _on_crawl_finished():
 	if action == "crawl":
 		crawl_sounds.play()
 	else:
 		crawl_sound_on = false
+# Crawl Sound
 #===================================================================
 func _on_pulling_finished():
 	if action == "pull" or action == "push": 
