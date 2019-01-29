@@ -74,7 +74,12 @@ func _ready():
 	animations.play(action)
 	handle_collision_shapes(action_shape)
 	set_physics_process(true)
+	get_parent().get_node("sounds/background").set_loop(true)
+	get_parent().get_node("sounds/0_rhythm").set_loop(true)
+	get_parent().get_node("sounds/1_rhythm").set_loop(true)
+	get_parent().get_node("sounds/2_melody").set_loop(true)
 	pass
+
 """
 Handle collision shapes
 ===================================================================
@@ -218,11 +223,14 @@ func normal_physics(delta):
 			first_step = sheet.get_first_step()
 			rhythm_game_mode()
 			stop_all_sounds()
+			mode = "rhythm"
+	
 		elif collision.collider.has_method("collect_melody"):
 			collision.collider.collect_melody()
 			mode = "melody"
 			sheet = collision.collider
 			stop_all_sounds()
+	
 		elif collision.collider.has_method("deadly"):
 			deadly_object = collision.collider
 			type = "object"
@@ -251,7 +259,7 @@ func rhythm_physics(delta):
 		action = "play"
 		action_shape = play
 		sheet.set_process(true)	
-	elif jumping_steps and read_input:
+	elif jumping_steps:
 		var direction = Vector2()
 		direction = (first_step - global_position)
 		velocity = move_and_slide(Vector2(direction.x, direction.y * 0.1))
@@ -274,8 +282,8 @@ Physics process function
 ===================================================================
 """
 func _physics_process(delta):
-	print("mode ", mode)
 	velocity.y += gravity * delta
+
 	if !arrow_shooting and abs(global_position.x - shooting.x) < 100:
 		if abs(global_position.y - shooting.y) < 400:
 			get_parent().get_node("second_floor/enemy_arrow").start_shooting()
@@ -319,6 +327,7 @@ Jumping stairs
 ===================================================================
 """
 func jump_stairs():
+	print("entrou no jump_stairs")
 	action = "jump"	
 	action_shape = jump
 	jump_stairs_timer.start()
@@ -342,11 +351,13 @@ func _on_animations_animation_finished():
 		if start == 1:
 			get_parent().get_node("second_floor/sheet_0").reset_rhythm()
 			get_parent().get_node("second_floor/enemy_arrow").stop_shooting()
+			jumping_steps = false
 		
 		if start == 2:
 			get_parent().get_node("third_floor/sheet_1").reset_rhythm()
 			get_parent().get_node("third_floor/sheet_2").reset_melody()
-
+			jumping_steps = false
+		arrow_shooting = false
 # Jump timer
 # ===================================================================
 # Gives time for the bard to go down before jumping
@@ -376,6 +387,19 @@ func _on_jump_stairs_timer_timeout():
 func _on_melody_timer_timeout():
 	sheet.generate_next_mug()
 
+# Collect sheet to the left
+# ===================================================================
+func collect_left():
+	animations.set_flip_h(true)
+	for action in actions:
+		action.set_scale(Vector2(1, 1))
+
+# Collect sheet to the right
+# ===================================================================
+func collect_right():
+	animations.set_flip_h(false)
+	for action in actions:
+		action.set_scale(Vector2(-1, 1))
 
 # *************
 # SOUND CONTROL

@@ -58,6 +58,7 @@ func collect_rhythm():
 	collision.disabled = true
 	sprite.hide()
 	set_process(true)
+	get_parent().get_parent().get_node("Bard").collect_right()
 
 """
 Reset rhythm sheet

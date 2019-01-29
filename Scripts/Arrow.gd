@@ -9,6 +9,7 @@ var speed = 500
 var collision_identified = false 
 func collision_handling(collision):
 	if collision:
+		print("houve colisão")
 		if collision.collider.has_method("lost_life"):
 			collision.collider.lost_life("enemy",[get_node("collision")])
 		queue_free()

@@ -1,8 +1,8 @@
 [gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Images/Tavern/Taverna_03.png" type="Texture" id=1]
-[ext_resource path="res://Images/Assets_tavern/degrau_disable.png" type="Texture" id=2]
-[ext_resource path="res://Images/Assets_tavern/degrau_enable.png" type="Texture" id=3]
+[ext_resource path="res://Images/Assets_tavern/degrau_enable.png" type="Texture" id=2]
+[ext_resource path="res://Images/Assets_tavern/degrau_disable.png" type="Texture" id=3]
 [ext_resource path="res://Scripts/Sheet_1.gd" type="Script" id=4]
 [ext_resource path="res://Images/pauta.png" type="Texture" id=5]
 [ext_resource path="res://Sound/Challenges/1_Rhythm/note_0.wav" type="AudioStream" id=6]
@@ -23,36 +23,36 @@
 [ext_resource path="res://Scenes/Barman.tscn" type="PackedScene" id=21]
 [ext_resource path="res://Scenes/Fight.tscn" type="PackedScene" id=22]
 
-[sub_resource type="SpriteFrames" id=5]
+[sub_resource type="SpriteFrames" id=1]
 
 animations = [ {
 "frames": [ ExtResource( 2 ) ],
 "loop": true,
-"name": "off",
+"name": "on",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 3 ) ],
 "loop": true,
-"name": "on",
+"name": "off",
 "speed": 5.0
 } ]
-
-[sub_resource type="RectangleShape2D" id=1]
-
-custom_solver_bias = 0.0
-extents = Vector2( 128.86, 9.85602 )
 
 [sub_resource type="RectangleShape2D" id=2]
 
 custom_solver_bias = 0.0
-extents = Vector2( 2337.2, 9.67148 )
+extents = Vector2( 128.86, 9.85602 )
 
 [sub_resource type="RectangleShape2D" id=3]
 
 custom_solver_bias = 0.0
-extents = Vector2( 10, 294.871 )
+extents = Vector2( 2337.2, 9.67148 )
 
 [sub_resource type="RectangleShape2D" id=4]
+
+custom_solver_bias = 0.0
+extents = Vector2( 10, 294.871 )
+
+[sub_resource type="RectangleShape2D" id=5]
 
 custom_solver_bias = 0.0
 extents = Vector2( 203.449, 33.2238 )
@@ -88,7 +88,7 @@ _sections_unfolded = [ "Collision", "Transform" ]
 [node name="sprite" type="AnimatedSprite" parent="stairs/stair_0" index="0"]
 
 scale = Vector2( 0.535166, 0.535166 )
-frames = SubResource( 5 )
+frames = SubResource( 1 )
 animation = "off"
 _sections_unfolded = [ "Transform" ]
 __meta__ = {
@@ -121,7 +121,7 @@ _sections_unfolded = [ "Transform" ]
 [node name="sprite" type="AnimatedSprite" parent="stairs/stair_1" index="0"]
 
 scale = Vector2( 0.535166, 0.535166 )
-frames = SubResource( 5 )
+frames = SubResource( 1 )
 animation = "off"
 _sections_unfolded = [ "Transform" ]
 __meta__ = {
@@ -154,7 +154,7 @@ _sections_unfolded = [ "Transform" ]
 [node name="sprite" type="AnimatedSprite" parent="stairs/stair_2" index="0"]
 
 scale = Vector2( 0.535166, 0.535166 )
-frames = SubResource( 5 )
+frames = SubResource( 1 )
 animation = "off"
 _sections_unfolded = [ "Transform" ]
 __meta__ = {
@@ -187,7 +187,7 @@ _sections_unfolded = [ "Transform" ]
 [node name="sprite" type="AnimatedSprite" parent="stairs/stair_3" index="0"]
 
 scale = Vector2( 0.535166, 0.535166 )
-frames = SubResource( 5 )
+frames = SubResource( 1 )
 animation = "off"
 _sections_unfolded = [ "Transform" ]
 __meta__ = {
@@ -309,7 +309,7 @@ __meta__ = {
 
 position = Vector2( 161.504, 319.8 )
 scale = Vector2( 1.06782, 1 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -318,7 +318,7 @@ __meta__ = {
 
 position = Vector2( 1104.3, 607.762 )
 scale = Vector2( 0.470872, 1.21338 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -327,7 +327,7 @@ __meta__ = {
 
 position = Vector2( 1102.09, 12.1594 )
 scale = Vector2( 0.470872, 1.21338 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -335,7 +335,7 @@ __meta__ = {
 [node name="left_collision" type="CollisionShape2D" parent="floor_and_walls" index="3"]
 
 position = Vector2( 10.4542, 318.853 )
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -343,7 +343,7 @@ __meta__ = {
 [node name="right_collision" type="CollisionShape2D" parent="floor_and_walls" index="4"]
 
 position = Vector2( 2186.67, 315.368 )
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -390,7 +390,7 @@ __meta__ = {
 [node name="collision" type="CollisionShape2D" parent="bottles" index="2"]
 
 position = Vector2( 102.299, -1.9864 )
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -452,7 +452,7 @@ __meta__ = {
 
 [node name="sheet_2" type="StaticBody2D" parent="." index="10"]
 
-position = Vector2( 1580.67, 1775.5 )
+position = Vector2( 1424.2, 1441.48 )
 scale = Vector2( 0.333448, 0.333448 )
 input_pickable = false
 collision_layer = 1
@@ -575,10 +575,10 @@ position = Vector2( 1228.63, 1658.82 )
 scale = Vector2( 0.508454, 0.508455 )
 texture = ExtResource( 20 )
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bar" index="1"]
+[node name="collision" type="CollisionPolygon2D" parent="bar" index="1"]
 
 build_mode = 0
-polygon = PoolVector2Array( 1011.46, 1717.7, 1017.46, 1687, 1006.42, 1687, 1006.42, 1664.93, 1026.28, 1664.93, 1026.28, 1518.21, 1017.46, 1517.11, 1016.35, 1500.56, 1005.32, 1495.05, 1005.32, 1484.01, 1451, 1484.01, 1449.9, 1495.05, 1441.07, 1496.15, 1441.07, 1516.01, 1430.04, 1516.01, 1430.04, 1663.83, 1451, 1663.83, 1451, 1684.79, 1437.76, 1687, 1435.38, 1718.57 )
+polygon = PoolVector2Array( 1017.01, 1836.95, 1017.46, 1687, 963.467, 1686.86, 963.353, 1664.62, 1026.28, 1664.93, 1026.28, 1518.21, 1017.46, 1517.11, 1016.35, 1500.56, 1005.32, 1495.05, 1005.32, 1484.01, 1451, 1484.01, 1449.9, 1495.05, 1441.07, 1496.15, 1441.07, 1516.01, 1430.04, 1516.01, 1430.04, 1663.83, 1493.35, 1663.86, 1493.35, 1685.64, 1439.96, 1685.61, 1439.96, 1835.52 )
 
 [node name="barman" parent="." index="13" instance=ExtResource( 21 )]
 

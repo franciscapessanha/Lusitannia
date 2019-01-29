@@ -57,14 +57,19 @@ func collect_rhythm():
 	collision.disabled = true
 	sprite.hide()
 	set_process(true)
+	get_parent().get_parent().get_node("Bard").collect_left()
 
 """
 Reset rhythm sheet
 ===================================================================
 """
 func reset_rhythm():
+	set_process(false)
 	collision.disabled = false
 	sprite.show()
+	mode = "show"
+	i = 0
+	time_elapsed = []
 
 """
 Handle stairs

@@ -25,6 +25,7 @@ func collect_melody():
 	collision.disabled = true
 	sprite.hide()
 	generate_next_mug()
+	get_parent().get_parent().get_node("Bard").collect_right()
 
 """
 Reset rhythm sheet

@@ -15,8 +15,8 @@
 [ext_resource path="res://Sound/Enemies/Arrow/arrow_shoot.wav" type="AudioStream" id=13]
 [ext_resource path="res://Scripts/Sheet_0.gd" type="Script" id=14]
 [ext_resource path="res://Images/pauta.png" type="Texture" id=15]
-[ext_resource path="res://Images/Assets_tavern/degrau_disable.png" type="Texture" id=16]
-[ext_resource path="res://Images/Assets_tavern/degrau_enable.png" type="Texture" id=17]
+[ext_resource path="res://Images/Assets_tavern/degrau_enable.png" type="Texture" id=16]
+[ext_resource path="res://Images/Assets_tavern/degrau_disable.png" type="Texture" id=17]
 [ext_resource path="res://Sound/Challenges/0_Rhythm/note_0.wav" type="AudioStream" id=18]
 [ext_resource path="res://Sound/Challenges/0_Rhythm/note_1.wav" type="AudioStream" id=19]
 [ext_resource path="res://Sound/Challenges/0_Rhythm/note_2.wav" type="AudioStream" id=20]
@@ -71,16 +71,16 @@ extents = Vector2( 75.3303, 96.9585 )
 animations = [ {
 "frames": [ ExtResource( 16 ) ],
 "loop": true,
-"name": "off",
+"name": "on",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 17 ) ],
 "loop": true,
-"name": "on",
+"name": "off",
 "speed": 5.0
 } ]
 
-[node name="second_floor" type="Node2D" index="0"]
+[node name="second_floor" type="Node2D"]
 
 script = ExtResource( 1 )
 

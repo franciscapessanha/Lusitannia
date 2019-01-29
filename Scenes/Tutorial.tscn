@@ -10,11 +10,11 @@
 [ext_resource path="res://Scenes/UI.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scenes/Bard.tscn" type="PackedScene" id=9]
 
-[node name="World" type="Node2D"]
+[node name="World" type="Node2D" index="0"]
 
 [node name="sounds" type="Node" parent="." index="0"]
 
-[node name="background" type="AudioStreamPlayer2D" parent="sounds" index="0"]
+[node name="background2" type="AudioStreamPlayer2D" parent="sounds" index="0"]
 
 stream = ExtResource( 1 )
 volume_db = 0.0
@@ -25,7 +25,7 @@ attenuation = 1.0
 bus = "Master"
 area_mask = 1
 
-[node name="0_rhythm" type="AudioStreamPlayer2D" parent="sounds" index="1"]
+[node name="0_rhythm2" type="AudioStreamPlayer2D" parent="sounds" index="1"]
 
 stream = ExtResource( 2 )
 volume_db = 0.0
@@ -36,7 +36,7 @@ attenuation = 1.0
 bus = "Master"
 area_mask = 1
 
-[node name="1_rhythm" type="AudioStreamPlayer2D" parent="sounds" index="2"]
+[node name="1_rhythm2" type="AudioStreamPlayer2D" parent="sounds" index="2"]
 
 stream = ExtResource( 3 )
 volume_db = 0.0
@@ -47,7 +47,7 @@ attenuation = 1.0
 bus = "Master"
 area_mask = 1
 
-[node name="2_melody" type="AudioStreamPlayer2D" parent="sounds" index="3"]
+[node name="2_melody2" type="AudioStreamPlayer2D" parent="sounds" index="3"]
 
 position = Vector2( -0.000854492, 0.00134277 )
 stream = ExtResource( 4 )
