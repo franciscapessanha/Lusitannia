@@ -1,20 +1,25 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Sound/Background/bar_sounds.wav" type="AudioStream" id=1]
 [ext_resource path="res://Sound/Background/first_rhythm.wav" type="AudioStream" id=2]
 [ext_resource path="res://Sound/Background/second_rhythm.wav" type="AudioStream" id=3]
 [ext_resource path="res://Sound/Background/final_composition.wav" type="AudioStream" id=4]
-[ext_resource path="res://Scenes/First_floor.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scenes/second_floor.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Scenes/third_floor.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Scenes/UI.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Scenes/Bard.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Sound/PerderVida.wav" type="AudioStream" id=5]
+[ext_resource path="res://Sound/JogoA_Comeca.wav" type="AudioStream" id=6]
+[ext_resource path="res://Sound/JogoTermina_Sucesso.wav" type="AudioStream" id=7]
+[ext_resource path="res://Scenes/First_floor.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/second_floor.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/third_floor.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scenes/UI.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scenes/Bard.tscn" type="PackedScene" id=12]
 
 [node name="World" type="Node2D" index="0"]
 
 [node name="sounds" type="Node" parent="." index="0"]
 
-[node name="background2" type="AudioStreamPlayer2D" parent="sounds" index="0"]
+editor/display_folded = true
+
+[node name="background" type="AudioStreamPlayer2D" parent="sounds" index="0"]
 
 stream = ExtResource( 1 )
 volume_db = 0.0
@@ -25,7 +30,7 @@ attenuation = 1.0
 bus = "Master"
 area_mask = 1
 
-[node name="0_rhythm2" type="AudioStreamPlayer2D" parent="sounds" index="1"]
+[node name="0_rhythm" type="AudioStreamPlayer2D" parent="sounds" index="1"]
 
 stream = ExtResource( 2 )
 volume_db = 0.0
@@ -36,7 +41,7 @@ attenuation = 1.0
 bus = "Master"
 area_mask = 1
 
-[node name="1_rhythm2" type="AudioStreamPlayer2D" parent="sounds" index="2"]
+[node name="1_rhythm" type="AudioStreamPlayer2D" parent="sounds" index="2"]
 
 stream = ExtResource( 3 )
 volume_db = 0.0
@@ -47,7 +52,7 @@ attenuation = 1.0
 bus = "Master"
 area_mask = 1
 
-[node name="2_melody2" type="AudioStreamPlayer2D" parent="sounds" index="3"]
+[node name="2_melody" type="AudioStreamPlayer2D" parent="sounds" index="3"]
 
 position = Vector2( -0.000854492, 0.00134277 )
 stream = ExtResource( 4 )
@@ -59,17 +64,77 @@ attenuation = 1.0
 bus = "Master"
 area_mask = 1
 
-[node name="first_floor" parent="." index="1" instance=ExtResource( 5 )]
+[node name="lost_life" type="AudioStreamPlayer2D" parent="sounds" index="4"]
 
-[node name="second_floor" parent="." index="2" instance=ExtResource( 6 )]
+stream = ExtResource( 5 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
 
-[node name="third_floor" parent="." index="3" instance=ExtResource( 7 )]
+[node name="start_game" type="AudioStreamPlayer2D" parent="sounds" index="5"]
 
-[node name="UI" parent="." index="4" instance=ExtResource( 8 )]
+stream = ExtResource( 6 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
 
-[node name="Bard" parent="." index="5" instance=ExtResource( 9 )]
+[node name="end_game" type="AudioStreamPlayer2D" parent="sounds" index="6"]
 
-position = Vector2( 198.715, 486.719 )
+stream = ExtResource( 7 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+
+[node name="enemy_death" type="AudioStreamPlayer2D" parent="sounds" index="7"]
+
+stream = null
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+
+[node name="first_floor" parent="." index="1" instance=ExtResource( 8 )]
+
+[node name="second_floor" parent="." index="2" instance=ExtResource( 9 )]
+
+[node name="third_floor" parent="." index="3" instance=ExtResource( 10 )]
+
+[node name="UI" parent="." index="4" instance=ExtResource( 11 )]
+
+[node name="checkpoints" type="Node" parent="." index="5"]
+
+editor/display_folded = true
+
+[node name="first" type="Position2D" parent="checkpoints" index="0"]
+
+position = Vector2( 184.237, 532.871 )
+
+[node name="second" type="Position2D" parent="checkpoints" index="1"]
+
+position = Vector2( 2051.19, 873.44 )
+
+[node name="third" type="Position2D" parent="checkpoints" index="2"]
+
+position = Vector2( 148.522, 1494.37 )
+
+[node name="Bard" parent="." index="6" instance=ExtResource( 12 )]
+
+position = Vector2( 196.779, 487.579 )
 scale = Vector2( 0.11527, 0.11527 )
 
 [node name="Camera2D" type="Camera2D" parent="Bard" index="9"]
@@ -98,19 +163,5 @@ editor_draw_screen = false
 editor_draw_limits = false
 editor_draw_drag_margin = true
 _sections_unfolded = [ "Drag Margin", "Editor", "Limit", "Smoothing", "Transform" ]
-
-[node name="checkpoints" type="Node" parent="." index="6"]
-
-[node name="first" type="Position2D" parent="checkpoints" index="0"]
-
-position = Vector2( 184.237, 532.871 )
-
-[node name="second" type="Position2D" parent="checkpoints" index="1"]
-
-position = Vector2( 2051.19, 873.44 )
-
-[node name="third" type="Position2D" parent="checkpoints" index="2"]
-
-position = Vector2( 148.522, 1494.37 )
 
 

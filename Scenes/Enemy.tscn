@@ -1,35 +1,42 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scripts/First_floor/enemy.gd" type="Script" id=1]
-[ext_resource path="res://Images/Enemy/Walk/bandit_melee_walk-01.png" type="Texture" id=2]
-[ext_resource path="res://Images/Enemy/Walk/bandit_melee_walk-02.png" type="Texture" id=3]
-[ext_resource path="res://Images/Enemy/Walk/bandit_melee_walk-03.png" type="Texture" id=4]
-[ext_resource path="res://Images/Enemy/Attack/bandit_melee_attack-01.png" type="Texture" id=5]
-[ext_resource path="res://Images/Enemy/Attack/bandit_melee_attack-02.png" type="Texture" id=6]
-[ext_resource path="res://Images/Enemy/Attack/bandit_melee_attack-03.png" type="Texture" id=7]
-[ext_resource path="res://Images/Enemy/Killed/bandit_melee_die-01.png" type="Texture" id=8]
-[ext_resource path="res://Images/Enemy/Killed/bandit_melee_die-02.png" type="Texture" id=9]
-[ext_resource path="res://Images/Enemy/Killed/bandit_melee_die-03.png" type="Texture" id=10]
-[ext_resource path="res://Images/Enemy/Killed/bandit_melee_die-04.png" type="Texture" id=11]
+[ext_resource path="res://Images/Enemy/Killed/bandit_melee_die2-01.png" type="Texture" id=2]
+[ext_resource path="res://Images/Enemy/Killed/bandit_melee_die2-02.png" type="Texture" id=3]
+[ext_resource path="res://Images/Enemy/Killed/bandit_melee_die2-03.png" type="Texture" id=4]
+[ext_resource path="res://Images/Enemy/Killed/bandit_melee_die2-04.png" type="Texture" id=5]
+[ext_resource path="res://Images/Enemy/Killed/bandit_melee_die2-05.png" type="Texture" id=6]
+[ext_resource path="res://Images/Enemy/Killed/bandit_melee_die2-06.png" type="Texture" id=7]
+[ext_resource path="res://Images/Enemy/Attack/bandit_melee_attack-01.png" type="Texture" id=8]
+[ext_resource path="res://Images/Enemy/Attack/bandit_melee_attack-02.png" type="Texture" id=9]
+[ext_resource path="res://Images/Enemy/Attack/bandit_melee_attack-03.png" type="Texture" id=10]
+[ext_resource path="res://Images/Enemy/Walk/bandit_melee_walk-01.png" type="Texture" id=11]
+[ext_resource path="res://Images/Enemy/Walk/bandit_melee_walk-02.png" type="Texture" id=12]
+[ext_resource path="res://Images/Enemy/Walk/bandit_melee_walk-03.png" type="Texture" id=13]
 
 [sub_resource type="SpriteFrames" id=1]
 
 animations = [ {
-"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ) ],
-"loop": true,
-"name": "walk",
-"speed": 5.0
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
+"loop": false,
+"name": "killed",
+"speed": 10.0
 }, {
-"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 6 ), ExtResource( 5 ) ],
+"frames": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 8 ) ],
 "loop": true,
 "name": "attack",
 "speed": 4.0
 }, {
-"frames": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ],
-"loop": false,
-"name": "killed",
+"frames": [ ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ],
+"loop": true,
+"name": "walk",
 "speed": 5.0
 } ]
+
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 732.91, 312.685 )
 
 [node name="Enemy" type="KinematicBody2D"]
 
@@ -43,7 +50,8 @@ _sections_unfolded = [ "collision" ]
 [node name="animations" type="AnimatedSprite" parent="." index="0"]
 
 frames = SubResource( 1 )
-animation = "walk"
+animation = "killed"
+frame = 5
 _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="walk_collision" type="CollisionPolygon2D" parent="." index="1"]
@@ -58,6 +66,21 @@ visible = false
 build_mode = 0
 polygon = PoolVector2Array( -539.162, 837.18, 417.346, 837.18, 417.346, 789.605, 297.156, 669.415, 334.716, 669.415, 334.716, 584.281, 292.149, 584.281, 294.652, 328.879, 372.275, 419.021, 670.244, 419.021, 670.244, 338.894, 833.001, 338.894, 833.001, 288.815, 680.26, 288.815, 675.252, 206.185, 625.173, 206.185, 625.173, 243.744, 582.606, 243.744, 582.606, 296.327, 337.22, 296.327, 337.22, 203.681, 294.652, 203.681, 294.652, 163.618, 209.518, 163.618, 209.518, 83.4918, 254.589, 85.9957, 254.589, -39.2016, 327.204, -39.2016, 334.716, -79.2647, 247.078, -247.029, 41.7539, -464.872, -78.4355, -499.928, -251.208, -499.928, -416.468, -414.794, -496.595, -289.596, -536.658, -164.399, -539.162, -41.7055, -376.405, 78.4839, -496.595, 168.626, -539.162, 211.193, -704.422, 211.193, -704.422, 288.815, -666.863, 288.815, -666.863, 331.382, -546.674, 331.382, -459.035, 253.76, -459.035, 371.446, -496.595, 378.958, -496.595, 584.281, -461.539, 586.785, -464.043, 619.336, -496.595, 631.856, -539.162, 674.423 )
 
+[node name="0_killed_collision" type="CollisionShape2D" parent="." index="3"]
+
+visible = false
+position = Vector2( 4.76965, 252.79 )
+shape = SubResource( 2 )
+_sections_unfolded = [ "Transform", "Z Index" ]
+
+[node name="1_killed_collision" type="CollisionShape2D" parent="." index="4"]
+
+position = Vector2( 0.00012207, 515.12 )
+shape = SubResource( 2 )
+_sections_unfolded = [ "Transform", "Z Index" ]
+
 [connection signal="animation_finished" from="animations" to="." method="_on_animations_animation_finished"]
+
+[connection signal="frame_changed" from="animations" to="." method="_on_animations_frame_changed"]
 
 

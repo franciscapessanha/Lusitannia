@@ -1,28 +1,29 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
-[ext_resource path="res://Scripts/Mug.gd" type="Script" id=1]
-[ext_resource path="res://Images/Assets_tavern/CanecaBreak/canecabreak-01.png" type="Texture" id=2]
-[ext_resource path="res://Images/Assets_tavern/CanecaBreak/canecabreak-02.png" type="Texture" id=3]
-[ext_resource path="res://Images/Assets_tavern/CanecaBreak/canecabreak-03.png" type="Texture" id=4]
-[ext_resource path="res://Images/Assets_tavern/CanecaBreak/canecabreak-04.png" type="Texture" id=5]
-[ext_resource path="res://Images/Assets_tavern/Caneca/caneca-01.png" type="Texture" id=6]
-[ext_resource path="res://Images/Assets_tavern/Caneca/caneca-02.png" type="Texture" id=7]
-[ext_resource path="res://Images/Assets_tavern/Caneca/caneca-03.png" type="Texture" id=8]
-[ext_resource path="res://Images/Assets_tavern/Caneca/caneca-04.png" type="Texture" id=9]
+[ext_resource path="res://Scripts/Third_floor/Mug.gd" type="Script" id=1]
+[ext_resource path="res://Images/Assets_tavern/Caneca/caneca-01.png" type="Texture" id=2]
+[ext_resource path="res://Images/Assets_tavern/Caneca/caneca-02.png" type="Texture" id=3]
+[ext_resource path="res://Images/Assets_tavern/Caneca/caneca-03.png" type="Texture" id=4]
+[ext_resource path="res://Images/Assets_tavern/Caneca/caneca-04.png" type="Texture" id=5]
+[ext_resource path="res://Images/Assets_tavern/CanecaBreak/canecabreak-01.png" type="Texture" id=6]
+[ext_resource path="res://Images/Assets_tavern/CanecaBreak/canecabreak-02.png" type="Texture" id=7]
+[ext_resource path="res://Images/Assets_tavern/CanecaBreak/canecabreak-03.png" type="Texture" id=8]
+[ext_resource path="res://Images/Assets_tavern/CanecaBreak/canecabreak-04.png" type="Texture" id=9]
 [ext_resource path="res://Fonts/cyrillic_pixel-7.ttf" type="DynamicFontData" id=10]
+[ext_resource path="res://Sound/Break_glass/break_glasse_1.wav" type="AudioStream" id=11]
 
 [sub_resource type="SpriteFrames" id=1]
 
 animations = [ {
 "frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ],
-"loop": false,
-"name": "break",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
 "loop": true,
 "name": "on_air",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
+"loop": false,
+"name": "break",
+"speed": 15.0
 } ]
 
 [sub_resource type="DynamicFont" id=2]
@@ -33,33 +34,23 @@ use_filter = false
 font_data = ExtResource( 10 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[node name="RigidBody2D" type="RigidBody2D"]
+[sub_resource type="RectangleShape2D" id=3]
+
+custom_solver_bias = 0.0
+extents = Vector2( 18.7735, 22.8413 )
+
+[node name="KinematicBody2D" type="KinematicBody2D"]
 
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
-mode = 0
-mass = 1.0
-friction = 1.0
-bounce = 0.0
-gravity_scale = 1.0
-custom_integrator = true
-continuous_cd = 0
-contacts_reported = 0
-contact_monitor = false
-sleeping = false
-can_sleep = true
-linear_velocity = Vector2( 0, 0 )
-linear_damp = -1.0
-angular_velocity = 0.0
-angular_damp = -1.0
+collision/safe_margin = 0.08
 script = ExtResource( 1 )
-_sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="animations" type="AnimatedSprite" parent="." index="0"]
 
-position = Vector2( 2.5142, -0.0730858 )
-scale = Vector2( 0.554243, 0.554243 )
+position = Vector2( 2.11126, -0.196712 )
+scale = Vector2( 0.432199, 0.432199 )
 frames = SubResource( 1 )
 animation = "on_air"
 _sections_unfolded = [ "Transform", "Z Index" ]
@@ -70,10 +61,10 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = -17.0
-margin_top = -23.0
-margin_right = 13.0
-margin_bottom = 35.0
+margin_left = -14.0
+margin_top = -10.0
+margin_right = 14.0
+margin_bottom = 30.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -89,5 +80,23 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Margin", "custom_colors", "custom_fonts" ]
+
+[node name="collision" type="CollisionShape2D" parent="." index="2"]
+
+position = Vector2( 2.23448, 5.0276 )
+shape = SubResource( 3 )
+
+[node name="break_sound" type="AudioStreamPlayer2D" parent="." index="3"]
+
+stream = ExtResource( 11 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+
+[connection signal="animation_finished" from="animations" to="." method="_on_animations_animation_finished"]
 
 

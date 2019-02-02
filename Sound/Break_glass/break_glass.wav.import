@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/break_glass.wav-30423a9e7361114f6a7f54b2d417074a.sample"
+
+[deps]
+
+source_file="res://Sound/Break_glass/break_glass.wav"
+dest_files=[ "res://.import/break_glass.wav-30423a9e7361114f6a7f54b2d417074a.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

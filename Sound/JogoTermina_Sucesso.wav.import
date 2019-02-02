@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/JogoTermina_Sucesso.wav-dc4e35ae7e9252d5976b0cb76f969908.sample"
+
+[deps]
+
+source_file="res://Sound/JogoTermina_Sucesso.wav"
+dest_files=[ "res://.import/JogoTermina_Sucesso.wav-dc4e35ae7e9252d5976b0cb76f969908.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

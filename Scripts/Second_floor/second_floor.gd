@@ -21,4 +21,6 @@ func _process(delta):
 		get_parent().get_node("Bard/Camera2D").limit_bottom = 1860
 		#get_parent().get_node("Bard/Camera2D").limit_bottom += get_parent().get_node("Bard/Camera2D").limit_bottom/2
 		get_parent().get_node("Bard").change_checkpoint()
+		get_parent().get_node("third_floor/sounds/fight_sound").play()
+		get_node("enemy_arrow").stop_shooting()
 	pass

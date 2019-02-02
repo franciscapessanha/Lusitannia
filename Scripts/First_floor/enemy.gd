@@ -16,7 +16,9 @@ var direction = Vector2()
 # Actions and collision shapes
 onready var walk = get_node("walk_collision")
 onready var attack = get_node("attack_collision")
-onready var actions = [walk, attack]
+onready var killed_0 = get_node("0_killed_collision")
+onready var killed_1 = get_node("1_killed_collision")
+onready var actions = [walk, attack, killed_0, killed_1]
 onready var animations = get_node("animations")
 
 # Action inicialization - walking
@@ -25,10 +27,11 @@ var action_shape = walk
 var walking = true
 var i = 0
 
+
 # Death variables
 var killed = false
 onready var head = get_node("head").global_position
-
+var death_frame = 0
 """
 Handle collision shapes
 ===================================================================
@@ -56,8 +59,9 @@ Arguments:
 """
 func collision_with_enemy(position):
 	if !killed:
-		if abs(position.y - head.y) < 10:
-			enemy_killed()
+		if abs(position.y - head.y) < 20:
+			if abs(position.x - head.x) < 100:
+				enemy_killed()
 		else:
 			get_parent().get_parent().get_node("Bard").lost_life("enemy", actions)
 
@@ -117,13 +121,27 @@ func _on_animations_animation_finished():
 	if killed:
 		animations.visible = false
 		set_physics_process(false)
+		queue_free()
 
 """
 Enemy killed
 ===================================================================
 """
 func enemy_killed():
+	get_parent().get_parent().get_node("sounds/lost_life").play()
 	animations.play("killed")
-	for i in range(len(actions)):
-		actions[i].disabled = true
 	killed = true
+	for i in range(len(actions)):
+		if actions[i] != killed_0:
+			actions[i].disabled = true
+		else:
+			actions[i].disabled = false
+
+func _on_animations_frame_changed():
+	if action == "killed":
+		if death_frame == 0:
+			death_frame += 1
+		else:
+			killed_0.disabled = true
+			killed_1.disabled = false
+

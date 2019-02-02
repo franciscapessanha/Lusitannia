@@ -6,14 +6,14 @@
 [ext_resource path="res://Images/Assets_tavern/cacosvideo-01.png" type="Texture" id=4]
 [ext_resource path="res://Images/Assets_tavern/barril-01.png" type="Texture" id=5]
 [ext_resource path="res://Images/Assets_tavern/mesa-01.png" type="Texture" id=6]
-[ext_resource path="res://Scripts/Enemy_arrow.gd" type="Script" id=7]
+[ext_resource path="res://Scripts/Second_floor/Enemy_arrow.gd" type="Script" id=7]
 [ext_resource path="res://Images/Enemy_arrow/Idle/bandit_arrow_idle-01.png" type="Texture" id=8]
 [ext_resource path="res://Images/Enemy_arrow/Idle/bandit_arrow_idle-02.png" type="Texture" id=9]
 [ext_resource path="res://Images/Enemy_arrow/Attack/bandit_arrow_attack-01.png" type="Texture" id=10]
 [ext_resource path="res://Images/Enemy_arrow/Attack/bandit_arrow_attack-02.png" type="Texture" id=11]
 [ext_resource path="res://Images/Enemy_arrow/Attack/bandit_arrow_attack-03.png" type="Texture" id=12]
 [ext_resource path="res://Sound/Enemies/Arrow/arrow_shoot.wav" type="AudioStream" id=13]
-[ext_resource path="res://Scripts/Sheet_0.gd" type="Script" id=14]
+[ext_resource path="res://Scripts/Second_floor/Sheet_0.gd" type="Script" id=14]
 [ext_resource path="res://Images/pauta.png" type="Texture" id=15]
 [ext_resource path="res://Images/Assets_tavern/degrau_enable.png" type="Texture" id=16]
 [ext_resource path="res://Images/Assets_tavern/degrau_disable.png" type="Texture" id=17]
@@ -40,7 +40,7 @@ extents = Vector2( 10, 294.871 )
 [sub_resource type="RectangleShape2D" id=4]
 
 custom_solver_bias = 0.0
-extents = Vector2( 203.449, 33.2238 )
+extents = Vector2( 203.449, 21.9854 )
 
 [sub_resource type="RectangleShape2D" id=5]
 
@@ -159,7 +159,6 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="bottles" type="StaticBody2D" parent="." index="3"]
 
-editor/display_folded = true
 position = Vector2( 1610.9, 1182.42 )
 input_pickable = false
 collision_layer = 1
@@ -367,7 +366,7 @@ scale = Vector2( 1.55435, 1.14123 )
 [node name="sheet_0" type="StaticBody2D" parent="." index="9"]
 
 editor/display_folded = true
-position = Vector2( 1963.12, 878.013 )
+position = Vector2( 1930.64, 872.746 )
 scale = Vector2( 0.333448, 0.333448 )
 input_pickable = false
 collision_layer = 1

@@ -66,6 +66,7 @@ onready var start = 0
 #Enemy with arrow - position control
 onready var shooting = get_parent().get_node("second_floor/start_shooting").global_position
 onready var arrow_shooting = false
+onready var alive = true
 """
 Ready Function
 ===================================================================
@@ -74,10 +75,6 @@ func _ready():
 	animations.play(action)
 	handle_collision_shapes(action_shape)
 	set_physics_process(true)
-	get_parent().get_node("sounds/background").set_loop(true)
-	get_parent().get_node("sounds/0_rhythm").set_loop(true)
-	get_parent().get_node("sounds/1_rhythm").set_loop(true)
-	get_parent().get_node("sounds/2_melody").set_loop(true)
 	pass
 
 """
@@ -218,18 +215,20 @@ func normal_physics(delta):
 	var collision = move_and_collide(velocity * delta)	
 	if collision:
 		if collision.collider.has_method("collect_rhythm"):
+			mode = "rhythm"
 			collision.collider.collect_rhythm()
 			sheet = collision.collider
 			first_step = sheet.get_first_step()
 			rhythm_game_mode()
 			stop_all_sounds()
-			mode = "rhythm"
+			get_parent().get_node("sounds/start_game").play()
 	
 		elif collision.collider.has_method("collect_melody"):
 			collision.collider.collect_melody()
 			mode = "melody"
 			sheet = collision.collider
 			stop_all_sounds()
+			get_parent().get_node("sounds/start_game").play()
 	
 		elif collision.collider.has_method("deadly"):
 			deadly_object = collision.collider
@@ -255,14 +254,15 @@ Arguments:
 	* delta
 """
 func rhythm_physics(delta):
-	if !jumping_steps or !read_input:
+	if !jumping_steps and !read_input:
 		action = "play"
 		action_shape = play
 		sheet.set_process(true)	
 	elif jumping_steps:
 		var direction = Vector2()
 		direction = (first_step - global_position)
-		velocity = move_and_slide(Vector2(direction.x, direction.y * 0.1))
+		velocity = move_and_slide(Vector2(direction.x * 50, jump_speed))
+		
 """
 Melody physics
 ===================================================================
@@ -283,7 +283,6 @@ Physics process function
 """
 func _physics_process(delta):
 	velocity.y += gravity * delta
-
 	if !arrow_shooting and abs(global_position.x - shooting.x) < 100:
 		if abs(global_position.y - shooting.y) < 400:
 			get_parent().get_node("second_floor/enemy_arrow").start_shooting()
@@ -298,23 +297,30 @@ func _physics_process(delta):
 		rhythm_physics(delta)
 	if mode == "melody":
 		melody_physics(delta)
+	
 	animations.play(action)
 	handle_collision_shapes(action_shape)
+
 
 """
 Lost life
 ===================================================================
 """
 func lost_life(type, enemy_actions):
-	get_parent().get_node("UI").take_life()
-	read_input = false
-	animations.modulate = Color(1,1,1,0.5)
-	action = "die"
-	if type == "object":
-		deadly_object.get_node("collision").disabled = true
-	if type == "enemy":
-		for i in range(len(enemy_actions)):
-			enemy_actions[i].disabled = true
+	if alive:
+		get_parent().get_node("sounds/lost_life").play()
+		alive = false
+		get_parent().get_node("UI").take_life()
+		read_input = false
+		animations.modulate = Color(1,1,1,0.5)
+		action = "die"
+		mode = "exploring"
+		for i in range(len(actions)):
+			actions[i].disabled = true
+		if type == "object":
+			deadly_object.get_node("collision").disabled = true
+		if type == "mug":
+			pass
 
 """
 Change checkpoint
@@ -327,12 +333,13 @@ Jumping stairs
 ===================================================================
 """
 func jump_stairs():
-	print("entrou no jump_stairs")
 	action = "jump"	
 	action_shape = jump
 	jump_stairs_timer.start()
 	jump_timer.start()
+	read_input = false
 	jumping_steps = true
+
 
 # ********************
 # TIMERS AND UTILITIES
@@ -348,6 +355,7 @@ func _on_animations_animation_finished():
 		read_input = true
 		global_position = checkpoints[start]
 		animations.modulate = Color(1,1,1,1)
+		alive = true
 		if start == 1:
 			get_parent().get_node("second_floor/sheet_0").reset_rhythm()
 			get_parent().get_node("second_floor/enemy_arrow").stop_shooting()

@@ -1,0 +1,14 @@
+[remap]
+
+importer="Theora"
+type="VideoStreamTheora"
+path="res://.import/introtaverna.ogv-337c5739def1b84b210f4c0c67ab179c.ogvstr"
+
+[deps]
+
+source_file="res://Videos/introtaverna.ogv"
+dest_files=[ "res://.import/introtaverna.ogv-337c5739def1b84b210f4c0c67ab179c.ogvstr" ]
+
+[params]
+
+loop=true

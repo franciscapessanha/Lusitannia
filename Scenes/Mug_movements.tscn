@@ -1,85 +1,40 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://Scripts/Mug_movements.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Third_floor/Mug_movements.gd" type="Script" id=1]
 
-[sub_resource type="Curve2D" id=1]
-
-bake_interval = 5.0
-_data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 408.854, -480.592, 186.028, -15.8095, -193.022, 8.88606, -17.5879, -691.569, 0, 0, 0, 0, -237.039, -1010.49 )
-}
-
-[sub_resource type="Curve2D" id=2]
-
-bake_interval = 5.0
-_data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 856.835, -641.307, -118.032, -26.6827, 39.8671, -5.65045, 1483.56, -946.833, 0, 0, 0, 0, 1712.5, -740.079 )
-}
-
-[sub_resource type="Curve2D" id=3]
-
-bake_interval = 5.0
-_data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 741.937, -615.539, 0, 0, 0, 0, 740.758, -1417.39 )
-}
-
-[sub_resource type="Curve2D" id=4]
-
-bake_interval = 5.0
-_data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 465.939, -571.763, 90.0449, 114.444, -94.1114, -110.959, 152.888, -783.675, 0, 0, 0, 0, -612.885, -932.977 )
-}
-
-[sub_resource type="Curve2D" id=5]
-
-bake_interval = 5.0
-_data = {
-"points": PoolVector2Array(  )
-}
-
-[node name="mug_movements" type="Node"]
+[node name="mug_movements" type="Node" index="0"]
 
 script = ExtResource( 1 )
 
-[node name="path_0" type="Path2D" parent="." index="0"]
+[node name="final_pos" type="Position2D" parent="." index="0"]
 
-self_modulate = Color( 0.5, 0.6, 1, 0.7 )
-position = Vector2( 1529.63, 1737.21 )
-scale = Vector2( 0.333448, 0.380144 )
-curve = SubResource( 1 )
+position = Vector2( 1223.76, 1397.28 )
+scale = Vector2( 2.67013, 1 )
 
-[node name="path_1" type="Path2D" parent="." index="1"]
+[node name="initial_pos" type="Node" parent="." index="1"]
 
-self_modulate = Color( 0.5, 0.6, 1, 0.7 )
-position = Vector2( 1528.98, 1725.65 )
-scale = Vector2( 0.333448, 0.333448 )
-curve = SubResource( 2 )
+[node name="pos_0" type="Position2D" parent="initial_pos" index="0"]
 
-[node name="path_2" type="Path2D" parent="." index="2"]
+position = Vector2( 1676.44, 1635.68 )
 
-self_modulate = Color( 0.5, 0.6, 1, 0.7 )
-position = Vector2( 1527.64, 1725.11 )
-scale = Vector2( 0.333448, 0.333448 )
-curve = SubResource( 3 )
+[node name="pos_1" type="Position2D" parent="initial_pos" index="1"]
 
-[node name="path_3" type="Path2D" parent="." index="3"]
+position = Vector2( 1860, 1564.14 )
 
-self_modulate = Color( 0.5, 0.6, 1, 0.7 )
-position = Vector2( 1527.64, 1725.11 )
-scale = Vector2( 0.333448, 0.333448 )
-curve = SubResource( 4 )
+[node name="pos_2" type="Position2D" parent="initial_pos" index="2"]
 
-[node name="mug_break" type="Timer" parent="." index="4"]
+position = Vector2( 1944.53, 1587.79 )
 
-process_mode = 0
+[node name="pos_3" type="Position2D" parent="initial_pos" index="3"]
+
+position = Vector2( 1760.38, 1557.56 )
+
+[node name="mug_break" type="Timer" parent="." index="2"]
+
+process_mode = 1
 wait_time = 0.01
 one_shot = true
 autostart = false
-
-[node name="path_4" type="Path2D" parent="." index="5"]
-
-self_modulate = Color( 0.5, 0.6, 1, 0.7 )
-curve = SubResource( 5 )
 
 [connection signal="timeout" from="mug_break" to="." method="_on_mug_break_timeout"]
 

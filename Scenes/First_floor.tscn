@@ -10,7 +10,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 198.622, 67.7725 )
+extents = Vector2( 198.622, 46.2484 )
 
 [sub_resource type="RectangleShape2D" id=2]
 
@@ -59,7 +59,6 @@ polygon = PoolVector2Array( 34.0032, 549.929, 80.4694, 550.027, 80.499, 561.876,
 
 [node name="bottles" type="StaticBody2D" parent="." index="2"]
 
-editor/display_folded = true
 scale = Vector2( 0.55, 0.55 )
 input_pickable = false
 collision_layer = 1
@@ -73,7 +72,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="collision" type="CollisionShape2D" parent="bottles" index="0"]
 
-position = Vector2( 1136.71, 1015.66 )
+position = Vector2( 1136.71, 1025.41 )
 scale = Vector2( 0.986491, 1 )
 shape = SubResource( 1 )
 
