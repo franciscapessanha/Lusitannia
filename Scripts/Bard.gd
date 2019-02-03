@@ -460,7 +460,7 @@ func _on_pulling_finished():
 func _on_collision_timer_timeout():
 	check_collision = true
 
-Loop background sounds
+# Loop background sounds
 #===================================================================
 func _on_background_finished():
 	get_parent().get_node("sounds/background").play()
