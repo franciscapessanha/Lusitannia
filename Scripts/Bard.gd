@@ -459,3 +459,18 @@ func _on_pulling_finished():
 #===================================================================
 func _on_collision_timer_timeout():
 	check_collision = true
+
+Loop background sounds
+#===================================================================
+func _on_background_finished():
+	get_parent().get_node("sounds/background").play()
+
+func _on_0_rhythm_finished():
+	get_parent().get_node("sounds/0_rhythm").play()
+
+func _on_1_rhythm_finished():
+	get_parent().get_node("sounds/1_rhythm").play()
+
+
+func _on_2_melody_finished():
+	get_parent().get_node("sounds/2_rhythm").play()
