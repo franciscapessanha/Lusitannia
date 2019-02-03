@@ -29,6 +29,7 @@ func collect_melody():
 	sprite.hide()
 	generate_next_mug()
 	get_parent().get_parent().get_node("Bard").collect_right()
+	get_parent().get_node("sounds/fight_sound").stop()
 
 """
 Reset rhythm sheet
@@ -37,6 +38,14 @@ Reset rhythm sheet
 func reset_melody():
 	collision.disabled = false
 	sprite.show()
+	collision.disabled = false
+	sprite.show()
+	i = -1
+	wrong = false
+	new_mug =  []
+	alive = true
+	read_input = true
+	set_process(false)
 
 func _ready():
 	set_process(false)
@@ -49,6 +58,7 @@ It will generate a new mug if the sequence didn't end.
 func generate_next_mug():
 	i += 1
 	set_process(true)
+	print("i", i)
 	if alive:
 		if i < len(sequency):
 			print("criou nova caneca pelo mug_mov")
@@ -58,6 +68,7 @@ func generate_next_mug():
 		else:
 			if !wrong:
 				get_parent().get_node("fight").change_animation("cheers")
+				get_parent().get_node("sounds/cheers").play()
 				get_parent().get_node("barman").change_animation("happy")
 				get_parent().get_node("fight/fight_collision").disabled = true
 				get_parent().get_parent().get_node("Bard").change_mode("exploring")
@@ -167,3 +178,6 @@ func _process(delta):
 func bard_died():
 	print("entrou no bard_died")
 	alive = false
+
+func _on_fight_sound_finished():
+	pass # replace with function body

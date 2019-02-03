@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://Scripts/Third_floor/third_floor.gd" type="Script" id=1]
 [ext_resource path="res://Images/Tavern/Taverna_03.png" type="Texture" id=2]
@@ -25,6 +25,7 @@
 [ext_resource path="res://Scenes/Fight.tscn" type="PackedScene" id=23]
 [ext_resource path="res://Sound/Pancada.wav" type="AudioStream" id=24]
 [ext_resource path="res://Sound/Break_glass/break_glasse_1.wav" type="AudioStream" id=25]
+[ext_resource path="res://Sound/cheers.wav" type="AudioStream" id=26]
 
 [sub_resource type="SpriteFrames" id=1]
 
@@ -622,6 +623,19 @@ attenuation = 1.0
 bus = "Master"
 area_mask = 1
 
+[node name="cheers" type="AudioStreamPlayer2D" parent="sounds" index="2"]
+
+stream = ExtResource( 26 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+
 [connection signal="timeout" from="rhythm_timer" to="sheet_1" method="_on_rhythm_timer_timeout"]
+
+[connection signal="finished" from="sounds/fight_sound" to="." method="_on_fight_sound_finished"]
 
 

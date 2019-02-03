@@ -29,4 +29,5 @@ func take_life():
 	elif lifes == -1:
 		over = true
 		transparent_background.show()
-
+		get_node("game_over").show()
+		get_tree().paused = true

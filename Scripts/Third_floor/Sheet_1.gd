@@ -59,14 +59,19 @@ func collect_rhythm():
 	sprite.hide()
 	set_process(true)
 	get_parent().get_parent().get_node("Bard").collect_right()
+	get_parent().get_node("sounds/fight_sound").stop()
 
 """
 Reset rhythm sheet
 ===================================================================
 """
 func reset_rhythm():
+	set_process(false)
 	collision.disabled = false
 	sprite.show()
+	mode = "show"
+	i = 0
+	time_elapsed = []
 	
 
 """

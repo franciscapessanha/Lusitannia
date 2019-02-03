@@ -7,20 +7,20 @@
 [ext_resource path="res://Images/Aedo/Playing/playing-01.png" type="Texture" id=5]
 [ext_resource path="res://Images/Aedo/Playing/playing-02.png" type="Texture" id=6]
 [ext_resource path="res://Images/Aedo/Playing/playing-03.png" type="Texture" id=7]
-[ext_resource path="res://Images/Aedo/Run/run-01.png" type="Texture" id=8]
-[ext_resource path="res://Images/Aedo/Run/run-02.png" type="Texture" id=9]
-[ext_resource path="res://Images/Aedo/Run/run-03.png" type="Texture" id=10]
-[ext_resource path="res://Images/Aedo/Push/push-01.png" type="Texture" id=11]
-[ext_resource path="res://Images/Aedo/Push/push-02.png" type="Texture" id=12]
-[ext_resource path="res://Images/Aedo/Push/push-03.png" type="Texture" id=13]
-[ext_resource path="res://Images/Aedo/Pull/pull-01.png" type="Texture" id=14]
-[ext_resource path="res://Images/Aedo/Pull/pull-02.png" type="Texture" id=15]
-[ext_resource path="res://Images/Aedo/Pull/pull-03.png" type="Texture" id=16]
-[ext_resource path="res://Images/Aedo/Jump/jump-01.png" type="Texture" id=17]
-[ext_resource path="res://Images/Aedo/Jump/jump-02.png" type="Texture" id=18]
-[ext_resource path="res://Images/Aedo/Jump/jump-03.png" type="Texture" id=19]
-[ext_resource path="res://Images/Aedo/Crawl/crawl-01.png" type="Texture" id=20]
-[ext_resource path="res://Images/Aedo/Crawl/crawl-02.png" type="Texture" id=21]
+[ext_resource path="res://Images/Aedo/Crawl/crawl-01.png" type="Texture" id=8]
+[ext_resource path="res://Images/Aedo/Crawl/crawl-02.png" type="Texture" id=9]
+[ext_resource path="res://Images/Aedo/Jump/jump-01.png" type="Texture" id=10]
+[ext_resource path="res://Images/Aedo/Jump/jump-02.png" type="Texture" id=11]
+[ext_resource path="res://Images/Aedo/Jump/jump-03.png" type="Texture" id=12]
+[ext_resource path="res://Images/Aedo/Pull/pull-01.png" type="Texture" id=13]
+[ext_resource path="res://Images/Aedo/Pull/pull-02.png" type="Texture" id=14]
+[ext_resource path="res://Images/Aedo/Pull/pull-03.png" type="Texture" id=15]
+[ext_resource path="res://Images/Aedo/Push/push-01.png" type="Texture" id=16]
+[ext_resource path="res://Images/Aedo/Push/push-02.png" type="Texture" id=17]
+[ext_resource path="res://Images/Aedo/Push/push-03.png" type="Texture" id=18]
+[ext_resource path="res://Images/Aedo/Run/run-01.png" type="Texture" id=19]
+[ext_resource path="res://Images/Aedo/Run/run-02.png" type="Texture" id=20]
+[ext_resource path="res://Images/Aedo/Run/run-03.png" type="Texture" id=21]
 [ext_resource path="res://Images/Aedo/Die/die-01.png" type="Texture" id=22]
 [ext_resource path="res://Images/Aedo/Die/die-02.png" type="Texture" id=23]
 [ext_resource path="res://Images/Aedo/Die/die-03.png" type="Texture" id=24]
@@ -46,29 +46,29 @@ animations = [ {
 "name": "play",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ) ],
+"frames": [ ExtResource( 8 ), ExtResource( 9 ) ],
 "loop": true,
-"name": "run",
+"name": "crawl",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ],
-"loop": true,
-"name": "push",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ) ],
-"loop": true,
-"name": "pull",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 18 ) ],
+"frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 11 ) ],
 "loop": false,
 "name": "jump",
 "speed": 8.0
 }, {
-"frames": [ ExtResource( 20 ), ExtResource( 21 ) ],
+"frames": [ ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ) ],
 "loop": true,
-"name": "crawl",
+"name": "pull",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ) ],
+"loop": true,
+"name": "push",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ) ],
+"loop": true,
+"name": "run",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 22 ), ExtResource( 23 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 25 ), ExtResource( 25 ) ],
@@ -183,7 +183,14 @@ wait_time = 0.7
 one_shot = true
 autostart = false
 
-[node name="feet" type="Position2D" parent="." index="11"]
+[node name="collision_timer" type="Timer" parent="." index="11"]
+
+process_mode = 1
+wait_time = 2.0
+one_shot = true
+autostart = false
+
+[node name="feet" type="Position2D" parent="." index="12"]
 
 position = Vector2( -93.2015, 796.827 )
 scale = Vector2( 4.86646, 3.57728 )
@@ -191,7 +198,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="pull_push" type="Node" parent="." index="12"]
+[node name="pull_push" type="Node" parent="." index="13"]
 
 [node name="pulling" type="AudioStreamPlayer2D" parent="pull_push" index="0"]
 
@@ -204,7 +211,7 @@ attenuation = 1.0
 bus = "Master"
 area_mask = 1
 
-[node name="jump" type="Node" parent="." index="13"]
+[node name="jump" type="Node" parent="." index="14"]
 
 [node name="jump_0" type="AudioStreamPlayer2D" parent="jump" index="0"]
 
@@ -250,7 +257,7 @@ attenuation = 1.0
 bus = "Master"
 area_mask = 1
 
-[node name="crawl" type="Node" parent="." index="14"]
+[node name="crawl" type="Node" parent="." index="15"]
 
 editor/display_folded = true
 
@@ -263,7 +270,7 @@ autoplay = false
 mix_target = 0
 bus = "Master"
 
-[node name="steps" type="Node" parent="." index="15"]
+[node name="steps" type="Node" parent="." index="16"]
 
 editor/display_folded = true
 
@@ -283,6 +290,8 @@ bus = "Master"
 [connection signal="timeout" from="jump_stairs_timer" to="." method="_on_jump_stairs_timer_timeout"]
 
 [connection signal="timeout" from="melody_timer" to="." method="_on_melody_timer_timeout"]
+
+[connection signal="timeout" from="collision_timer" to="." method="_on_collision_timer_timeout"]
 
 [connection signal="finished" from="pull_push/pulling" to="." method="_on_pulling_finished"]
 

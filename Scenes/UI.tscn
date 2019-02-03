@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/UI.gd" type="Script" id=1]
 [ext_resource path="res://Images/Lifes/life-02.png" type="Texture" id=2]
@@ -18,7 +18,20 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="UI" type="CanvasLayer" index="0"]
+[sub_resource type="DynamicFontData" id=2]
+
+hinting = 2
+font_path = "res://Fonts/cyrillic_pixel-7.ttf"
+
+[sub_resource type="DynamicFont" id=3]
+
+size = 90
+use_mipmaps = false
+use_filter = false
+font_data = SubResource( 2 )
+_sections_unfolded = [ "Font", "Settings" ]
+
+[node name="UI" type="CanvasLayer"]
 
 pause_mode = 2
 layer = 1
@@ -69,5 +82,29 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 color = Color( 1, 1, 1, 1 )
 _sections_unfolded = [ "Material", "Visibility" ]
+
+[node name="game_over" type="Label" parent="." index="4"]
+
+visible = false
+anchor_left = 0.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = -45.5
+margin_bottom = 45.5
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 3 )
+text = "Game Over"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_fonts" ]
 
 

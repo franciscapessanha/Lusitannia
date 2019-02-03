@@ -8,6 +8,7 @@ Global Variables
 onready var initial_position = get_node("initial_position").global_position
 onready var final_position = get_node("final_position").global_position
 onready var target_position = final_position
+var collided = false
 
 # Movement variables
 var run_speed = 350
@@ -32,6 +33,24 @@ var i = 0
 var killed = false
 onready var head = get_node("head").global_position
 var death_frame = 0
+
+"""
+Reset enemy
+===================================================================
+"""
+func reset_enemy():
+	global_position = initial_position
+	target_position = final_position
+	action = "walk"
+	action_shape = walk
+	var walking = true
+	var i = 0
+	killed = false
+	collided = false
+	handle_collision_shapes(action_shape)
+	set_physics_process(true)
+	
+
 """
 Handle collision shapes
 ===================================================================
@@ -62,8 +81,11 @@ func collision_with_enemy(position):
 		if abs(position.y - head.y) < 20:
 			if abs(position.x - head.x) < 100:
 				enemy_killed()
-		else:
+				killed = true
+		elif !collided:
 			get_parent().get_parent().get_node("Bard").lost_life("enemy", actions)
+			print("morreu no collision with enemy")
+			collided = true
 
 """
 Attack
@@ -85,7 +107,9 @@ When finishing the movement in on direction it will attack.
 """
 func _physics_process(delta):
 	var collision = move_and_collide(direction * delta)
-	if collision and collision.collider.has_method("lost_life"):
+	if collision and collision.collider.has_method("lost_life") and !collided:
+		collided = true
+		print("morreu da colisão feita pelo inimigo")
 		get_parent().get_parent().get_node("Bard").lost_life("enemy", actions)
 	if walking and !killed:
 		direction.x = (target_position.x - global_position.x)

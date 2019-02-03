@@ -31,6 +31,7 @@ onready var action = "idle"
 onready var action_shape = idle
 onready var first_step
 
+
 #Motion parameters
 var velocity = Vector2(0,0)
 var run_speed = 200
@@ -63,10 +64,15 @@ onready var checkpoints = [get_parent().get_node("checkpoints/first").global_pos
 get_parent().get_node("checkpoints/second").global_position, 
 get_parent().get_node("checkpoints/third").global_position]
 onready var start = 0 
+
 #Enemy with arrow - position control
 onready var shooting = get_parent().get_node("second_floor/start_shooting").global_position
 onready var arrow_shooting = false
 onready var alive = true
+
+#Kill enemy
+onready var collision_timer = get_node("collision_timer")
+var check_collision = true
 """
 Ready Function
 ===================================================================
@@ -75,6 +81,8 @@ func _ready():
 	animations.play(action)
 	handle_collision_shapes(action_shape)
 	set_physics_process(true)
+	get_parent().get_node("sounds/background").play()
+	
 	pass
 
 """
@@ -126,7 +134,7 @@ func get_input():
 				action_shape = idle
 				crawl_sounds.stop()
 				crawl_sound_on = false
-			else:
+			elif !pulling:
 				action = "jump"	
 				action_shape = jump
 				jump_timer.start()
@@ -235,8 +243,10 @@ func normal_physics(delta):
 			type = "object"
 			lost_life(type, [])
 			stop_all_sounds()
-		if collision.collider.has_method("collision_with_enemy"):
+		if collision.collider.has_method("collision_with_enemy") and check_collision:
 			collision.collider.collision_with_enemy(feet.global_position)
+			check_collision = false
+			collision_timer.start()
 	
 	#When pushing/pulling a object
 	if pulling:
@@ -307,7 +317,7 @@ Lost life
 ===================================================================
 """
 func lost_life(type, enemy_actions):
-	if alive:
+	if alive and check_collision:
 		get_parent().get_node("sounds/lost_life").play()
 		alive = false
 		get_parent().get_node("UI").take_life()
@@ -318,9 +328,11 @@ func lost_life(type, enemy_actions):
 		for i in range(len(actions)):
 			actions[i].disabled = true
 		if type == "object":
-			deadly_object.get_node("collision").disabled = true
+			#deadly_object.get_node("collision").disabled = true
+			pass
 		if type == "mug":
 			pass
+		
 
 """
 Change checkpoint
@@ -356,14 +368,23 @@ func _on_animations_animation_finished():
 		global_position = checkpoints[start]
 		animations.modulate = Color(1,1,1,1)
 		alive = true
+		if start == 0:
+			get_parent().get_node("first_floor/enemy").reset_enemy()
+			get_parent().get_node("sounds/background").play()
 		if start == 1:
 			get_parent().get_node("second_floor/sheet_0").reset_rhythm()
 			get_parent().get_node("second_floor/enemy_arrow").stop_shooting()
+			get_parent().get_node("sounds/background").play()
 			jumping_steps = false
 		
 		if start == 2:
 			get_parent().get_node("third_floor/sheet_1").reset_rhythm()
 			get_parent().get_node("third_floor/sheet_2").reset_melody()
+			get_parent().get_node("third_floor/sounds/fight_sound").play()
+			get_parent().get_node("sounds/background").play()
+			get_parent().get_node("sounds/0_rhythm").play()
+			get_parent().get_node("second_floor/enemy_arrow").stop_shooting()
+			
 			jumping_steps = false
 		arrow_shooting = false
 # Jump timer
@@ -433,3 +454,8 @@ func _on_crawl_finished():
 func _on_pulling_finished():
 	if action == "pull" or action == "push": 
 		pulling_sounds.play()
+
+# Collision Timer
+#===================================================================
+func _on_collision_timer_timeout():
+	check_collision = true

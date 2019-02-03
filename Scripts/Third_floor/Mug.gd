@@ -21,10 +21,11 @@ func start_movement(initial_pos, final_pos):
 	
 func _physics_process(delta):
 	direction = (final - global_position)
-	velocity = move_and_slide(0.3*Vector2(direction.x * 0.05, direction.y))
+	velocity = move_and_slide(0.2*Vector2(direction.x * 0.05, direction.y))
 	var collision = move_and_collide(velocity)
 	if collision and collision.collider.has_method("lost_life"):
 		bard = collision.collider
+		get_node("Label").set_text("")
 		animations.play("break")
 		break_sound.play()
 		break_ = true

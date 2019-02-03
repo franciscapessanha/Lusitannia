@@ -17,8 +17,6 @@
 
 [node name="sounds" type="Node" parent="." index="0"]
 
-editor/display_folded = true
-
 [node name="background" type="AudioStreamPlayer2D" parent="sounds" index="0"]
 
 stream = ExtResource( 1 )
@@ -114,6 +112,8 @@ area_mask = 1
 
 [node name="third_floor" parent="." index="3" instance=ExtResource( 10 )]
 
+position = Vector2( 1, 0 )
+
 [node name="UI" parent="." index="4" instance=ExtResource( 11 )]
 
 [node name="checkpoints" type="Node" parent="." index="5"]
@@ -134,7 +134,7 @@ position = Vector2( 148.522, 1494.37 )
 
 [node name="Bard" parent="." index="6" instance=ExtResource( 12 )]
 
-position = Vector2( 196.779, 487.579 )
+position = Vector2( 204.567, 486.965 )
 scale = Vector2( 0.11527, 0.11527 )
 
 [node name="Camera2D" type="Camera2D" parent="Bard" index="9"]
