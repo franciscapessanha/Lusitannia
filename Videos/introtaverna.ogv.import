@@ -2,12 +2,12 @@
 
 importer="Theora"
 type="VideoStreamTheora"
-path="res://.import/introtaverna.ogv-337c5739def1b84b210f4c0c67ab179c.ogvstr"
+path="res://.import/IntroTaverna.ogv-02a7e43ea76b22c68537ff6bcaf5d0ed.ogvstr"
 
 [deps]
 
-source_file="res://Videos/introtaverna.ogv"
-dest_files=[ "res://.import/introtaverna.ogv-337c5739def1b84b210f4c0c67ab179c.ogvstr" ]
+source_file="res://Videos/IntroTaverna.ogv"
+dest_files=[ "res://.import/IntroTaverna.ogv-02a7e43ea76b22c68537ff6bcaf5d0ed.ogvstr" ]
 
 [params]
 

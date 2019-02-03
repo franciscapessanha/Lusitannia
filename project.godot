@@ -11,7 +11,7 @@ config_version=3
 [application]
 
 config/name="Lusitannia"
-run/main_scene="res://Scenes/Tutorial.tscn"
+run/main_scene="res://Scenes/IntroJogo.tscn"
 config/icon="res://icon.png"
 
 [display]

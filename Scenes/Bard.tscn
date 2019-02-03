@@ -25,13 +25,14 @@
 [ext_resource path="res://Images/Aedo/Die/die-02.png" type="Texture" id=23]
 [ext_resource path="res://Images/Aedo/Die/die-03.png" type="Texture" id=24]
 [ext_resource path="res://Images/Aedo/Die/die-04.png" type="Texture" id=25]
-[ext_resource path="res://Sound/Bard/Pull:Push/pull_push.wav" type="AudioStream" id=26]
+[ext_resource path="res://Sound/Bard/Pull_Push/pull_push.wav" type="AudioStream" id=26]
 [ext_resource path="res://Sound/Bard/Jump/jump_0.wav" type="AudioStream" id=27]
 [ext_resource path="res://Sound/Bard/Jump/jump_1.wav" type="AudioStream" id=28]
 [ext_resource path="res://Sound/Bard/Jump/jump_2.wav" type="AudioStream" id=29]
 [ext_resource path="res://Sound/Bard/Jump/jump_3.wav" type="AudioStream" id=30]
 [ext_resource path="res://Sound/Bard/Crawl/crawl.wav" type="AudioStream" id=31]
 [ext_resource path="res://Sound/Bard/Steps/steps.wav" type="AudioStream" id=32]
+
 
 [sub_resource type="SpriteFrames" id=1]
 

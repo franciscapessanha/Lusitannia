@@ -2,12 +2,12 @@
 
 importer="Theora"
 type="VideoStreamTheora"
-path="res://.import/introfloresta.ogv-bd8058fef8cefbb699292dc5dfa297ba.ogvstr"
+path="res://.import/IntroFloresta.ogv-34466b3d98059cf233e96b4d9eeb4e69.ogvstr"
 
 [deps]
 
-source_file="res://Videos/introfloresta.ogv"
-dest_files=[ "res://.import/introfloresta.ogv-bd8058fef8cefbb699292dc5dfa297ba.ogvstr" ]
+source_file="res://Videos/IntroFloresta.ogv"
+dest_files=[ "res://.import/IntroFloresta.ogv-34466b3d98059cf233e96b4d9eeb4e69.ogvstr" ]
 
 [params]
 

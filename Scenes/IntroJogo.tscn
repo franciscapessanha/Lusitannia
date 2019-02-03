@@ -1,0 +1,139 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Videos/IntroTaverna.ogv" type="VideoStream" id=1]
+[ext_resource path="res://Images/telanegra.jpg" type="Texture" id=2]
+[ext_resource path="res://Images/buttons/menu2.png" type="Texture" id=3]
+[ext_resource path="res://Images/buttons/menu3.png" type="Texture" id=4]
+
+[sub_resource type="GDScript" id=1]
+
+script/source = "extends Node2D
+
+
+
+func _ready():
+	$MarginContainer/VBoxContainer/VBoxContainer/TextureButton.grab_focus()
+
+	
+
+func _physics_process(delta):
+	if $MarginContainer/VBoxContainer/VBoxContainer/TextureButton.is_hovered() == true:
+		$MarginContainer/VBoxContainer/VBoxContainer/TextureButton.grab_focus()
+
+
+
+func _on_TextureButton_pressed():
+	get_tree().change_scene(\"res://Scenes/TitleScreen.tscn\")"
+
+[node name="IntroJogo" type="Node2D"]
+
+script = SubResource( 1 )
+
+[node name="VideoPlayer" type="VideoPlayer" parent="." index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = -13.0
+margin_right = 1027.0
+margin_bottom = 614.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+audio_track = 0
+stream = ExtResource( 1 )
+volume_db = 0.0
+autoplay = true
+paused = false
+expand = true
+buffering_msec = 500
+bus = "Master"
+
+[node name="Sprite" type="Sprite" parent="." index="1"]
+
+visible = false
+texture = ExtResource( 2 )
+centered = false
+_sections_unfolded = [ "Offset" ]
+
+[node name="MarginContainer" type="MarginContainer" parent="." index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 811.0
+margin_top = 513.0
+margin_right = 1019.0
+margin_bottom = 595.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 8.0
+margin_right = 208.0
+margin_bottom = 82.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+alignment = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 200.0
+margin_bottom = 82.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+alignment = 0
+
+[node name="TextureButton" type="TextureButton" parent="MarginContainer/VBoxContainer/VBoxContainer" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 200.0
+margin_bottom = 82.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 3 )
+_sections_unfolded = [ "Textures" ]
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/TextureButton" to="." method="_on_TextureButton_pressed"]
+
+
